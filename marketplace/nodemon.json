@@ -1,0 +1,18 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "nightwatch-tests/**"
+  ],
+  "verbose": false,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "env": {
+    "NODE_PATH": "./src/server:./src/shared",
+    "NODE_ENV": "development",
+    "NODEMON" : true,
+  },
+  "ext": "js jsx json"
+}

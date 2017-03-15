@@ -1,0 +1,104 @@
+
+/*** BACK OFFICE ***/
+
+.mp-header-title{
+  h1.brand{
+    letter-spacing: -0.02em;
+    a,a:hover,a:visited,a:active{color: $color-greyDark;}
+  }
+}
+
+.boSettingsContent{
+  width: 66%;
+  margin: 25px auto;
+
+  label{
+    width: 100% !important;
+    display: block !important;
+    input, textarea {
+      width: 100%
+    }
+  }
+
+}
+
+.page-admin .mp-main > .container,
+.page-admin .mp-main > .container-fluid{
+  //padding: 40px 25px;
+  padding: 0px;
+}
+
+.page-admin{
+
+  .mp-header-title .container{
+      @include fullwidth();
+  }
+
+  .mp-main {
+    margin: 0px;
+    padding: 0px $padding ($padding * 2) $padding;
+
+    nav.mp-menu{
+      //margin: 0 -30px 25px -25px;
+      margin: 0 -30px 25px 0px;
+      border-bottom: 3px solid #EEE;
+      li {
+        margin-right: 13px;
+        a {
+
+          font-size: 12px;
+          word-spacing: 0.25em;
+        }
+      }
+    }
+
+    nav.mp-menu + div > div.row{
+      margin: 0 -30px 25px -30px;
+      & > div:first-of-type{padding-left: 5px;}
+    }
+
+  }
+
+
+  .mp-footer > .container{
+    @include fullwidth();
+    padding-right: 25px;
+  }
+}
+
+#mainContent {
+  position: relative;
+  clear: both;
+  #boSettingsMenu {
+    float: left;
+    margin-left: 75px;
+  }
+}
+
+.boSettingsContent {
+  clear: both;
+  form {
+    width: 500px;
+    margin: 20px auto;
+    label {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+}
+
+
+.article-bo-summary {
+  height: auto;
+  min-height: 184px;
+}
+
+.item-bo-main-picture {
+  max-width: 100%;
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+

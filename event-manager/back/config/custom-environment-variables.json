@@ -1,0 +1,12 @@
+{
+  "db": {
+    "url": "DB_URL",
+    "port": "DB_PORT"
+  },
+  "definitions": {
+    "PO_URL": "PO_URL",
+    "QUEUE_URL": "QUEUE_URL",
+    "GDP_URL": "GDP_URL",
+    "TL_SYSTEM": "TL_SYSTEM"
+  }
+}

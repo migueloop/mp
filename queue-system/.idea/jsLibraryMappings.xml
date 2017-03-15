@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/api" libraries="{queue-system/api/node_modules}" />
+    <file url="file://$PROJECT_DIR$/core" libraries="{queue-system/core/node_modules}" />
+    <file url="file://$PROJECT_DIR$/workers/api" libraries="{queue-system/workers/api/node_modules}" />
+    <file url="file://$PROJECT_DIR$/workers/email" libraries="{queue-system/workers/email/node_modules}" />
+    <file url="file://$PROJECT_DIR$/workers/template" libraries="{queue-system/workers/template/node_modules}" />
+    <file url="PROJECT" libraries="{node-DefinitelyTyped}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+  </component>
+</project>

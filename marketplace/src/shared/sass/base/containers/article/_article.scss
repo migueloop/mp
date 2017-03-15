@@ -1,0 +1,87 @@
+/** TODO: merge with product.scss... **/
+.mp-article {
+
+    margin-top: $articleMargin;
+    padding-top: $articlePadding;
+
+    .author .thumb,
+    .extract .thumb,
+    .image-gallery, /// TEMP
+    .image-gallery-slide, /// TEMP
+    .mp-carousel,
+    .carousel-inner > .item {
+        background: $aSliderBg; /// TEMP
+        height: $aSliderHeight;
+    }
+    .author .thumb,
+    .extract .thumb,
+    .image-gallery,
+    .mp-carousel {
+        margin-bottom: 30px;
+    }
+
+    .image-gallery { /// TEMP
+        position: relative;
+        overflow: hidden;
+    }
+    .image-gallery-slide {
+        position: absolute;
+        overflow: hidden;
+        img {
+            max-height: 100%;
+            max-width: 100%;
+            position: relative;
+            left: 50%;
+            @include transform(translateX(-50%));
+        }
+    } /// ...TEMP
+
+    .presentation, .mp-tab {
+        margin-bottom: 30px;
+    }
+
+    .mp-menu {
+        padding-top: 20px;
+    }
+
+    h3.tagline {
+        margin: 0 0 20px;
+    }
+
+    ul.categories {
+        margin-bottom: 30px;
+    }
+
+    p.more,
+    p.eula {
+        text-align: right;
+        font: $aMoreFont;
+        a {
+            &, &:visited {
+                color: $aMoreText;
+            }
+            &:hover, &:active, &:focus {
+                color: $aMoreHover;
+            }
+        }
+    }
+
+    .author .thumb,
+    .extract .thumb {
+        overflow: hidden;
+        img {
+            display: block;
+            max-height: 100%;
+            max-width: 100%;
+            position: relative;
+            left: 50%;
+            @include transform(translateX(-50%));
+        }
+    }
+
+    ul.dots {
+        @include naked();
+        list-style: none;
+    }
+
+}

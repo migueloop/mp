@@ -1,0 +1,75 @@
+.mp-assignments {
+
+  .selected-users {
+    font-weight: bold;
+    font-size: larger;
+    margin-top: $padding / 2;
+    .delete-icon {
+      position: absolute;
+      right: $padding;
+      margin-top: -5px;
+      font-size: larger;
+      cursor: pointer;
+    }
+  }
+
+  .select-bundle-component {
+    position: relative;
+    width: 100%;
+    background-color: #f2f2f2;
+    color: #4a2727;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #DDD;
+    padding: ($padding * 2) $padding;
+    #select-bundle-component-add {
+      //padding: 1% 14% 0 14%;
+    }
+
+    .list-item-row {
+      .item-logo {
+        border: 2px solid transparent;
+      }
+    }
+
+    #description {
+      text-align: left;
+    }
+
+    #change-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .detail-assignment {
+      #main-header {
+        text-transform: uppercase;
+      }
+      #general-information {
+        #assignment-information {
+          background-color: #f2f2f2;
+          border: #424f54 solid 1px;
+          overflow: hidden;
+          line-height: 13px;
+          div:first-child {
+            #order-id {
+              color: #6d6c6c;
+              font-size: large;
+            }
+            #assigned-to {
+              font-weignt: bold;
+              font-size: large;
+            }
+            #creation-date, #assigned-by {
+
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+}
+

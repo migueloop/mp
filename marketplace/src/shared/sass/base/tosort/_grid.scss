@@ -1,0 +1,122 @@
+/*
+.mp-grid {
+
+    @include naked();
+    list-style: none;
+    margin: 0 -20px;
+    text-align: center;
+
+    li {
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+        width: 20%;
+        text-align: center;
+        padding: 0 20px;
+        .add {
+            margin-top: 30px;
+        }
+        .remove {
+            position: absolute;
+            top: 15px;
+            left: 40px;
+            opacity: .25;
+            @include transition(opacity, 200ms);
+            &:hover {
+                opacity: 1;
+            }
+        }
+        a, .a {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            padding: 30px 30px 20px;
+            @include transition(background, 500ms);
+            &:hover, &:active, &:focus {
+                text-decoration: none;
+                h4 {
+                    color: $ahover;
+                    text-decoration: underline;
+                }
+            }
+            &:hover {
+                background: $light1;
+            }
+        }
+        .icon {
+            width: 70px;
+            height: 70px;
+            background: $medium2; // temp
+            display: block;
+            margin: 0 auto 10px;
+            overflow: hidden;
+            img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        h4, h5 {
+            margin: 0 0 5px;
+        }
+        h4 {
+            color: $atitle;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        h5 {
+            color: $acat;
+            font-weight: 400;
+            font-size: 12px;
+            padding-top: 0;
+        }
+        .star {
+            background: $orange;
+            height: 20px;
+            width: 100px;
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            transform: rotate(45deg);
+            color: white;
+            i {
+                transform: translateY(2px) rotate(-45deg);
+            }
+        }
+    }
+
+    .review {
+        margin-bottom: 10px;
+        .score {
+            display: block;
+            color: $sscore;
+            padding-top: 5px;
+            .note {
+                font-weight: 700;
+                position: relative;
+                top: -5px;
+            }
+            .max {
+                position: relative;
+                top: 5px;
+            }
+        }
+    }
+
+    .btn-buy {
+        border: 1px $steel solid;
+        background: white;
+        width: 100%;
+    }
+    a:hover .btn-buy {
+        color: $white;
+        background: $steel;
+    }
+    .btn-buy:hover {
+        background: $black !important;
+    }
+
+}
+*/

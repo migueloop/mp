@@ -1,0 +1,12 @@
+FROM node:6
+WORKDIR /code
+COPY package.json package.json
+RUN npm i
+COPY . .
+EXPOSE 8000
+ENV PORT 8000
+ENV NODE_ENV development
+ENV NODE_PATH ./src/shared:./src/server
+RUN mkdir logs
+CMD npm run build-gulp
+CMD npm run start:dev

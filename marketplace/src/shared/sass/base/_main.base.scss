@@ -1,0 +1,70 @@
+/// Mixins
+@import './mixins.scss';
+
+/// Variables
+@import './vars.base.scss';
+
+/// Icono
+@import 'icono.scss';
+
+/// Ico - NEW styles for react-icons
+@import 'ico.scss';
+
+/// Components
+@import './components/slick.scss';
+@import './components/carousel.scss';
+@import './components/products.scss';
+@import './components/articles.scss';
+@import './components/keywords.scss';
+@import './components/menu.scss';
+@import './components/sidebar.scss';
+@import './components/bundles.scss';
+@import './components/modals.scss';
+@import './components/assignments.scss';
+@import './components/popovers.scss';
+
+/// Layout
+@import './layout/layout.scss';
+@import './layout/header.scss';
+@import './layout/toolbar.scss';
+@import './layout/footer.scss';
+
+/// Elements
+@import './elements/elements.scss';
+@import './elements/tables.scss';
+@import './elements/modals.scss';
+@import './elements/timeline.scss';
+
+/// Home
+@import './containers/home/home.scss';
+@import './containers/home/corners.scss';
+@import './containers/home/products.scss';
+
+/// Corner
+@import './containers/corner/corner.scss';
+@import './containers/corner/filters.scss';
+
+/// Product
+@import './containers/product/product.scss';
+@import './containers/product/header.scss';
+
+/// Article
+@import './containers/article/article.scss';
+@import './containers/article/header.scss';
+
+/// Community
+@import './containers/community/community.scss';
+
+/// Misc
+@import './tosort/iframes.scss';
+@import './containers/backoffice/settings.scss';
+@import './tosort/backoffice.scss';
+
+// UI
+@import './ui/buttons.scss';
+@import './ui/accordion.scss';
+@import './ui/form.scss';
+@import './ui/pagination.scss';
+
+// Fonts
+@import './typography/typography.scss';

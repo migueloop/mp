@@ -1,0 +1,255 @@
+.mp-corner {
+
+    margin-top: $cornerMargin;
+    padding-top: $cornerPadding;
+
+    .about {
+        background: $cAboutBg;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        .cover {
+            overflow: hidden;
+            max-height: $cAboutHeight;
+            background: $cAboutImg;
+            .thumb {
+                height: 100%;
+            }
+            img {
+                display: block;
+                max-height: 100%;
+                max-width: 100%;
+                position: relative;
+            }
+        }
+        h2.title {
+            text-align: center;
+            margin: 15px 0;
+        }
+    }
+
+    .mp-menu {
+        text-align: right;
+    }
+
+
+    .mp-articles.grid,
+    .mp-products.grid {
+        margin-top: 20px;
+    }
+
+}
+
+
+/*
+.mp-ribbon {
+    margin-bottom: 10px;
+    .btn-group {
+        margin-top: 0;
+    }
+}
+
+.mp-corner {
+
+    .banner {
+        background: $banner;
+        margin-bottom: 30px;
+        .title {
+            text-align: center;
+            h1 {
+                margin: 30px 0 10px;
+                font: 46px/50px $font;
+                color: $steel;
+                &.edit {
+                    margin-top: 20px;
+                }
+                input {
+                    font-size: 1em;
+                    text-align: center;
+                    display: inline-block;
+                    width: 80%;
+                    height: 50px;
+                    border: 1px $white solid;
+                }
+            }
+        }
+        .cover {
+            background: $main;
+            min-height: 230px;
+            position: relative;
+            img {
+                width: 100%;
+                height: auto;
+            }
+            .add {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+            }
+        }
+        .mp-tools .community {
+            margin-top: 0;
+        }
+        .mp-grid {
+            margin: 0;
+            li {
+                width: 33%;
+                padding: 0;
+                .icon {
+                    border: 1px $main solid;
+                }
+                a, .a {
+                    padding: 15px;
+                    &:hover {
+                        background: transparent;
+                    }
+                    .remove {
+                        top: 0;
+                        left: 50px;
+                    }
+                }
+            }
+        }
+    }
+
+    .highlight {
+        text-align: center;
+        margin-bottom: 20px;
+        textarea {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        h3 {
+            font: 600 15px/18px $font;
+            color: $orange;
+            text-transform: uppercase;
+        }
+    }
+
+    .filters {
+        border-bottom: 2px $light2 solid;
+        margin-bottom: 30px;
+        padding: 0 20px 20px;
+        .selector {
+            text-align: right;
+            a {
+                font: 700 12px/12px $font;
+                &, &:visited {
+                    color: $main;
+                }
+                &:hover, &:active, &:focus {
+                    color: $orange;
+                }
+            }
+        }
+        .fields {
+            display: none;
+        }
+        .form-control {
+            border: 1px solid $light3;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+            -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+            -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
+        }
+        .control-label {
+            font-size: 11px;
+            display: block;
+            text-align: center;
+        }
+        .mp-labels {
+            margin-top: 0;
+            button {
+                border: 1px $light3 solid;
+                &, &:visited {
+                    color: $llink;
+                    background: $white;
+                }
+                &:hover, &:active, &:focus, &.on, &.on:hover {
+                    color: $llink;
+                    background: $lactive;
+                }
+                &:hover, &.on:hover {
+                    color: $lhover;
+                    background: $llink;
+                }
+            }
+        }
+    }
+
+}
+
+.mp-buttons {
+
+    button {
+        div {
+            display: block;
+            width: 100%;
+            height: 50px;
+            border: 1px solid $light3;
+            border-width: 1px 1px 1px 0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            @include transition(all, 200ms);
+            &.mobile span {
+                background-position: 0 -225px;
+            }
+            &.saas span {
+                background-position: -60px -225px;
+            }
+            &.device span {
+                background-position: -120px -225px;
+            }
+            &.service span {
+                background-position: -180px -225px;
+            }
+            &.bundle span {
+                background-position: -240px -225px;
+            }
+            &.interview span {
+                background-position: -300px -225px;
+            }
+            &.android span {
+                background-position: 0 -275px;
+            }
+            &.apple span {
+                background-position: -60px -275px;
+            }
+            &.microsoft span {
+                background-position: -120px -275px;
+            }
+            &.place span {
+                background-position: -180px -275px;
+            }
+        }
+        span {
+            @include sprite();
+            display: block;
+            width: 60px;
+            height: 50px;
+            margin: 0 auto;
+        }
+        @include naked();
+        border: none;
+        background: white;
+        display: inline-block;
+        vertical-align: top;
+        font: 400 10px/30px $font;
+        width: 90px;
+        height: 80px;
+        &:first-child div {
+            border-left: 1px solid $light3;
+        }
+        &:hover, &:focus, &.on, .on:hover {
+            div {
+                background: $lactive;
+            }
+        }
+        &:active {
+            div {
+                background: $llink;
+            }
+        }
+    }
+
+}
+*/

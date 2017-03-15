@@ -1,0 +1,143 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - ./config-files/mysql/conf.d:/etc/mysql/conf.d
+      - ./config-files/mysql/dump:/docker-entrypoint-initdb.d
+      - ./volumes/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=marketplace
+    ports:
+      - 3308:3307
+  redis:
+    image: redis
+    volumes:
+     - ./volumes/redis:/data
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    volumes:
+     - ./volumes/mongodb:/data/db
+    restart: unless-stopped
+    ports:
+    - 27017:27017
+  event-manager-back:
+    build:
+      context: event-manager/back
+      dockerfile: ./Dockerfile-dev
+    restart: unless-stopped
+    volumes:
+      - ./event-manager/back/src:/code/src
+      - ./event-manager/back/api:/code/api
+    environment:
+      DB_URL: mongodb
+      NODE_ENV: "development"
+      NODE_PATH: "./src"
+    command: ["npm", "run", "dev"]
+    ports:
+      - 3030:3000
+    depends_on:
+     - mongodb
+    links:
+     - mongodb
+  queue-core:
+    build: ./queue-system/core
+    restart: unless-stopped
+    environment:
+      REDIS_HOST: redis
+      NODE_ENV: development
+    depends_on:
+     - redis
+    links:
+     - redis
+  queue-worker_email:
+    build: ./queue-system/workers/email
+    restart: unless-stopped
+    environment:
+      QUEUE_URL: http://queue-core:2725
+    depends_on:
+      - queue-core
+    links:
+      - queue-core
+      - queue-api
+  queue-worker_api:
+    build: ./queue-system/workers/api
+    restart: unless-stopped
+    environment:
+      QUEUE_URL: http://queue-core:2725
+    depends_on:
+      - queue-core
+    links:
+      - queue-core
+      - queue-api
+  queue-api:
+    build: ./queue-system/api
+    restart: unless-stopped
+    environment:
+      REDIS_HOST: redis
+      NODE_ENV: production
+    ports:
+      - 5014:3000
+    depends_on:
+     - redis
+    links:
+     - redis
+  marketplace-api:
+    build:
+      context: ./marketplace-api
+      dockerfile: ./Dockerfile-dev
+    restart: unless-stopped
+    volumes:
+      - ./marketplace-api/src:/code/src
+      - ./config-files/marketplace:/code/src/configuration/files
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    ports:
+      - 8080:8080
+  marketplace-webpack:
+    build:
+      context: ./marketplace
+      dockerfile: ./Dockerfile-dev
+    restart: unless-stopped
+    volumes:
+      - ./marketplace/src:/code/src
+    command: ["npm", "run", "webpack:docker"]
+  marketplace-gulp:
+    build:
+      context: ./marketplace
+      dockerfile: ./Dockerfile-dev
+    restart: unless-stopped
+    volumes:
+      - ./marketplace/src:/code/src
+    command: ["npm", "run", "watch-gulp"]
+  marketplace:
+    build:
+      context: ./marketplace
+      dockerfile: ./Dockerfile-dev
+    restart: unless-stopped
+    volumes:
+      - ./marketplace/src:/code/src
+      - ./config-files/marketplace:/code/src/server/config/files
+      - ./config-files/marketplace:/code/src/shared/config/files
+    depends_on:
+      - mysql
+      - marketplace-api
+      - redis
+      - event-manager-back
+      - marketplace-webpack
+      - queue-api
+    links:
+      - mysql
+      - marketplace-api
+      - redis
+      - event-manager-back
+      - marketplace-webpack
+      - queue-api
+    ports:
+      - 8000:8000

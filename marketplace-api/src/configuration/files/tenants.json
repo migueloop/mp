@@ -1,0 +1,23 @@
+{
+  "hp": [
+    "api.uat.mobility-for-work.com"
+  ],
+  "intuiteev":[
+    "api.uat.intuiteev.io"
+  ],
+  "apple":[
+    "api.uat.apple-business-solution.com"
+  ],
+  "mississippi": [
+    "api.uat.mississippi.digital"
+  ],
+  "sncf": [
+    "api.sncf.intuiteev.io"
+  ],
+  "decathlon": [
+    "api.decathlon.intuiteev.io"
+  ],
+  "airbus": [
+    "api.airbus.intuiteev.io"
+  ]
+}

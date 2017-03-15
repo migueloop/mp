@@ -1,0 +1,83 @@
+.mp-filters {
+
+    .toggle {
+        height: 12px;
+        margin-top: -22px;
+        margin-bottom: 7px;
+        font: $menuFont;
+        text-transform: uppercase;
+        cursor: pointer;
+        width: 100px;
+        &:hover {
+            color: $menuHover;
+        }
+        span{font-size: 12px;}
+        .glyphicon{
+            margin: 0px 5px 7px 12px;
+        }
+    }
+
+    .filters {
+        padding: 15px 0;
+        padding: 20px 30px;
+        background: #F6F6F6;
+        border-top: 3px solid #EEE;
+        border-bottom: 3px solid #EEE;
+        margin-bottom: $padding;
+    }
+
+    input[type="text"]{
+        background-color: #FFF;
+        border: 1px solid #999;
+    }
+
+    .control-label .text{font-weight: bold!important;}
+
+    label {
+        cursor: pointer;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        display: none;
+        & + .caption {
+            font-weight: 400;
+        }
+        &:checked + .caption {
+            font-weight: 800;
+            color: $cFiltersActive;
+        }
+    }
+
+    .text label, input[type="text"] {
+        width: 100%;
+    }
+
+    .text label, .keywords label {
+        margin: 10px 0;
+    }
+
+    .types {
+        .icono {
+            font-size: 24px;
+            width: 32px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+
+    .platforms {
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .icono {
+            font-size: 42px;
+        }
+        .text {
+            display: none;
+        }
+    }
+
+}

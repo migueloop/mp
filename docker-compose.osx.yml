@@ -1,0 +1,90 @@
+version: '2'
+
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - ./config-files/mysql/conf.d:/etc/mysql/conf.d
+      - ./config-files/mysql/dump:/docker-entrypoint-initdb.d
+      - ./volumes/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=marketplace
+    ports:
+      - 3307:3306
+  redis:
+    image: redis
+    volumes:
+     - ./volumes/redis:/data
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+     - 6379:6379
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    volumes:
+     - ./volumes/mongodb:/data/db
+    restart: unless-stopped
+    ports:
+    - 27019:27017
+  event-manager-back:
+    build:
+      context: event-manager/back
+      dockerfile: ./Dockerfile-dev
+    restart: unless-stopped
+    volumes:
+      - ./event-manager/back/src:/code/src
+      - ./event-manager/back/api:/code/api
+    environment:
+      DB_URL: mongodb
+      NODE_ENV: "development"
+      NODE_PATH: "./src"
+    command: ["npm", "run", "dev"]
+    ports:
+      - 5013:3000
+    depends_on:
+     - mongodb
+    links:
+     - mongodb
+  queue-core:
+    build: ./queue-system/core
+    restart: unless-stopped
+    environment:
+      REDIS_HOST: redis
+      NODE_ENV: development
+    depends_on:
+     - redis
+    links:
+     - redis
+  queue-worker_email:
+    build: ./queue-system/workers/email
+    restart: unless-stopped
+    environment:
+      QUEUE_URL: http://queue-core:2725
+    depends_on:
+      - queue-core
+    links:
+      - queue-core
+      - queue-api
+  queue-worker_api:
+    build: ./queue-system/workers/api
+    restart: unless-stopped
+    environment:
+      QUEUE_URL: http://queue-core:2725
+    depends_on:
+      - queue-core
+    links:
+      - queue-core
+      - queue-api
+  queue-api:
+    build: ./queue-system/api
+    restart: unless-stopped
+    environment:
+      REDIS_HOST: redis
+      NODE_ENV: production
+    ports:
+      - 5014:3000
+    depends_on:
+     - redis
+    links:
+     - redis

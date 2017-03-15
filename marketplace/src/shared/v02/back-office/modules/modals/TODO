@@ -1,0 +1,1 @@
+Move all this modal stuff out. It has a load of specific logic in that. Maybe it is just needed for the front end?

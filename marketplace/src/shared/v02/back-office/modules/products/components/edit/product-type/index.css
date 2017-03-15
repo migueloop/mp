@@ -1,0 +1,9 @@
+.input-group-addon{
+    background-color: #4F4f4f;
+    color: #FFF
+}
+
+.input-group-addon img{
+    height: 20px;
+    cursor: pointer;
+}

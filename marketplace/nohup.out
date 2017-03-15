@@ -1,0 +1,103 @@
+Creating network "architecture_default" with the default driver
+Building marketplace-webpack
+Step 1 : FROM node:6
+ ---> 130ebee906ca
+Step 2 : WORKDIR /code
+ ---> Using cache
+ ---> 7166ee3d2adc
+Step 3 : COPY package.json package.json
+ ---> Using cache
+ ---> 0044f9323d87
+Step 4 : RUN npm i
+ ---> Using cache
+ ---> 3d70dbcd3efd
+Step 5 : COPY . .
+ ---> 407dc97480ca
+Removing intermediate container 63c6e776001b
+Step 6 : EXPOSE 3001
+ ---> Running in 44fcb75b3ac6
+ ---> a1364c47fa49
+Removing intermediate container 44fcb75b3ac6
+Step 7 : ENV PORT 3001
+ ---> Running in 95bbca0b755f
+ ---> f1bc03c3e0be
+Removing intermediate container 95bbca0b755f
+Step 8 : ENV NODE_ENV development
+ ---> Running in 7303c430e96c
+ ---> 54933d62a3a1
+Removing intermediate container 7303c430e96c
+Step 9 : ENV API_V02_ENDPOINT http://marketplace-api:3001/
+ ---> Running in b2351efea831
+ ---> c3dcf4de764b
+Removing intermediate container b2351efea831
+ ---> Running in 0c67aba2ccba
+Gracefully stopping... (press Ctrl+C again to force)
+Building marketplace-webpack
+Step 1 : FROM node:6
+ ---> 130ebee906ca
+Step 2 : WORKDIR /code
+ ---> Using cache
+ ---> 7166ee3d2adc
+Step 3 : COPY package.json package.json
+ ---> Using cache
+ ---> 0044f9323d87
+Step 4 : RUN npm i
+ ---> Using cache
+ ---> 3d70dbcd3efd
+Step 5 : COPY . .
+ ---> cd5f8dd03871
+Removing intermediate container 4b48a29889ae
+Step 6 : EXPOSE 3001
+ ---> Running in 242fefee70f5
+ ---> 03018778c179
+Removing intermediate container 242fefee70f5
+Step 7 : ENV PORT 3001
+ ---> Running in da4b0b197794
+ ---> 21c92b59f591
+Removing intermediate container da4b0b197794
+Step 8 : ENV NODE_ENV development
+ ---> Running in e9c3e44c6a04
+ ---> 4355701a33b4
+Removing intermediate container e9c3e44c6a04
+Step 9 : ENV API_V02_ENDPOINT http://marketplace-api:3001/
+ ---> Running in 99050a64f39d
+Gracefully stopping... (press Ctrl+C again to force)
+Builds, (re)creates, starts, and attaches to containers for a service.
+
+Unless they are already running, this command also starts any linked services.
+
+The `docker-compose up` command aggregates the output of each container. When
+the command exits, all containers are stopped. Running `docker-compose up -d`
+starts the containers in the background and leaves them running.
+
+If there are existing containers for a service, and the service's configuration
+or image was changed after the container's creation, `docker-compose up` picks
+up the changes by stopping and recreating the containers (preserving mounted
+volumes). To prevent Compose from picking up changes, use the `--no-recreate`
+flag.
+
+If you want to force Compose to stop and recreate all containers, use the
+`--force-recreate` flag.
+
+Usage: up [options] [SERVICE...]
+
+Options:
+    -d                         Detached mode: Run containers in the background,
+                               print new container names.
+                               Incompatible with --abort-on-container-exit.
+    --no-color                 Produce monochrome output.
+    --no-deps                  Don't start linked services.
+    --force-recreate           Recreate containers even if their configuration
+                               and image haven't changed.
+                               Incompatible with --no-recreate.
+    --no-recreate              If containers already exist, don't recreate them.
+                               Incompatible with --force-recreate.
+    --no-build                 Don't build an image, even if it's missing.
+    --build                    Build images before starting containers.
+    --abort-on-container-exit  Stops all containers if any container was stopped.
+                               Incompatible with -d.
+    -t, --timeout TIMEOUT      Use this timeout in seconds for container shutdown
+                               when attached or when containers are already
+                               running. (default: 10)
+    --remove-orphans           Remove containers for services not
+                               defined in the Compose file

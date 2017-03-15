@@ -1,0 +1,86 @@
+/// Mixins
+@import '../../base/mixins.scss';
+
+/// Variables
+@import '../../base/vars.base.scss';
+@import 'vars.tenant.scss';
+
+/// Icono
+@import '../../base/icono.scss';
+
+/// Containers
+@import '../../base/containers/frontoffice/detailpage.scss';
+
+// NEW added to _main.base.scss !!!
+@import '../../base/components/slick.scss';
+@import '../../base/ico.scss';
+@import '../../base/ui/buttons.scss';
+@import '../../base/ui/form.scss';
+
+/// Components
+@import '../../base/components/carousel.scss';
+@import 'components/carousel.scss';
+@import '../../base/components/products.scss';
+@import '../../base/components/articles.scss';
+@import '../../base/components/keywords.scss';
+@import '../../base/components/menu.scss';
+@import '../../base/components/sidebar.scss';
+@import '../../base/components/bundles.scss';
+@import '../../base/components/modals.scss';
+@import '../../base/components/assignments.scss';
+
+//@import '../../base/apps.scss';       /// > ?
+//@import '../../base/labels.scss';     /// > keywords
+//@import '../../base/grid.scss';
+//@import '../../base/discussion.scss'; /// > comments
+//@import '../../base/sidebar.scss';
+
+/// Layout
+@import '../../base/layout/layout.scss';
+/// @import '../../base/layout/header.scss';
+@import '../../base/layout/toolbar.scss';
+@import '../../base/layout/footer.scss';
+@import 'layout/header.scss';
+//@import 'layout/toolbar.scss';
+@import 'layout/layout.scss';
+
+/// Custom corners
+@import 'custom.scss';
+
+/// Elements
+// @import '../../base/elements/elements.scss';
+// @import '../../base/elements/tables.scss';
+//@import '../../base/elements/modals.scss';
+@import '../../base/elements/timeline.scss';
+
+/// Home
+@import '../../base/containers/home/home.scss';
+@import '../../base/containers/home/corners.scss';
+@import '../../base/containers/home/products.scss';
+@import 'containers/home/home.scss';
+
+/// Corner
+@import '../../base/containers/corner/corner.scss';
+@import '../../base/containers/corner/filters.scss';
+@import 'containers/corner/corner.scss';
+
+/// Product
+@import '../../base/containers/product/product.scss';
+@import '../../base/containers/product/header.scss';
+@import 'containers/product/product.scss';
+
+/// Article
+@import '../../base/containers/article/article.scss';
+@import '../../base/containers/article/header.scss';
+@import 'containers/article/article.scss';
+
+/// Community
+@import '../../base/containers/community/community.scss';
+
+/// Misc
+@import '../../base/tosort/iframes.scss';
+@import '../../base/containers/backoffice/settings.scss';
+@import '../../base/tosort/backoffice.scss';
+
+// Fonts
+@import '../../base/typography/typography.scss';

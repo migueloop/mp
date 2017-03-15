@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  core:
+    build: ./core
+    restart: unless-stopped
+    environment:
+      REDIS_HOST: redis
+      NODE_ENV: production
+    depends_on:
+     - redis
+    links:
+     - redis
+  worker_email:
+    build: ./workers/email
+    restart: unless-stopped
+    environment:
+      QUEUE_URL: http://core:2725
+    depends_on:
+      - core
+    links:
+      - core
+      - api
+  worker_api:
+    build: ./workers/api
+    restart: unless-stopped
+    environment:
+      QUEUE_URL: http://core:2725
+    depends_on:
+      - core
+    links:
+      - core
+      - api
+  api:
+    build: ./api
+    restart: unless-stopped
+    environment:
+      REDIS_HOST: redis
+      NODE_ENV: production
+    depends_on:
+     - redis
+    links:
+     - redis
+  redis:
+    image: redis
+    volumes:
+     - ./volumes/redis:/data
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]

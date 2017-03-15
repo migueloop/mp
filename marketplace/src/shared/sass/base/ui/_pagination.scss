@@ -1,0 +1,39 @@
+
+.pagination{
+
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+
+  li a{
+    color: $color-grey;
+    background-color: #fff;
+    border: 1px solid #EEE;
+    &:hover{
+      background-color: $color-highlight-hover!important;
+      border-color: $color-highlight-hover!important;
+      color: $color-greyDark;
+    }
+  }
+
+  li.disabled a{
+    color: #CCC!important;
+    &:hover{}
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd;
+  }
+  li.active a{
+    z-index: 3;
+    color: $color-greyDark;
+    cursor: default;
+    background-color: $color-highlight!important;
+    border-color: $color-highlight!important;
+    &:hover{
+      background-color: $color-highlight!important;
+      border-color: $color-highlight!important;
+      color: $color-greyDark;
+    }
+  }
+}

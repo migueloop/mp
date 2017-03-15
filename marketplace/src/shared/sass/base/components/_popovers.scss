@@ -1,0 +1,146 @@
+
+// BOOTSTRAP DEFAULTS
+
+.popover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  // z-index: 1060;
+  // display: none;
+  max-width: 400px;
+  padding: 1px;
+  // font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  /*
+  line-height: 1.42857143;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  white-space: normal;
+  */
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  line-break: auto;
+}
+
+.popover{
+
+  padding: 0px;
+  border: 0px;
+  border-radius: 0px!important;
+    font-family: $layoutFont;
+
+  h3{
+    color: $color-greyDark;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    background-color: $color-grey;
+    background-color: #BBB;
+  }
+
+  .arrow{
+    &:after{
+      border-bottom-color: $color-grey!important;
+      border-bottom-color: #BBB!important;
+    }
+  }
+
+  .popover-title{
+    border-radius: 0px;
+  }
+
+}
+
+// notification
+#notification-popover{
+
+  left: initial!important;
+  right: 36px!important;
+  width: 400px;
+  margin-top: 0px;
+  border-radius: 0px!important;
+
+  .arrow{
+    margin-left: 40px;
+  }
+  .popover-content{
+    padding: 0px;
+  }
+
+}
+
+.user-notification {
+  padding: 7px 30px 7px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #DDD;
+  background-color: $color-highlight;
+  min-height: 50px;
+  font-weight: bold; // unread
+  .row{
+    display: flex;
+    align-items: center;
+  }
+  .ico{
+    margin-left: 10px;
+    font-size: 22px;
+    color: darken($color-highlight,30%);
+  }
+  &.clicked {
+    background-color: #fff;
+    font-weight: normal;
+    .ico{color: #BBB;}
+  }
+  &:hover {
+    background-color: $color-highlight-hover;
+    .ico{color: darken($color-highlight,30%);}
+  }
+}
+
+.notification-list {
+  max-height: 300px;
+  overflow-y: scroll;
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+}
+
+.notification-date{
+  display: block;
+  font-size: 11px;
+  margin-top: 5px;
+  color: #888;
+}
+
+.popover-header,
+.popover-footer {
+  text-align: center;
+  padding: 7px 12px;
+  span, a{
+    color: darken($color-green,5%)!important;
+    font-weight: bold;
+  }
+  span.clickable, a span{
+    cursor: pointer;
+    &:hover{text-decoration: underline;}
+  }
+}
+
+
+.popover-header .row{
+  div:nth-child(1){text-align: left;}
+  div:nth-child(2){text-align: right;}
+}

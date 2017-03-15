@@ -1,0 +1,7 @@
+{
+  "queue": {
+    "url": "http://localhost:2725",
+    "auth": "keyboard-cat",
+    "type": "QUEUE_TYPE"
+  }
+}

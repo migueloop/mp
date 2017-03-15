@@ -1,0 +1,76 @@
+// Sticky footer
+
+.page-admin, .front, html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+.mp-main {
+  min-height: calc(#{"100% - 202px"});
+  // margin-bottom: -55px;
+  // @media (max-width: 599px) {
+  // }
+}
+
+/// Footer
+.mp-footer {
+
+    clear: both;
+    // margin: $footerMargin;
+    padding: $footerPadding;
+    background: $footerBg;
+    color: $footerText;
+    border-bottom: $footerBorder;
+    font: $footerFont;
+    .countries {
+        label, select {
+            display: inline-block;
+        }
+        label {
+            margin-right: 10px;
+        }
+        select {
+            font: inherit;
+            background: $fCountryBg;
+            color: $fCountryText;
+            border: 1px $fCountryBorder solid;
+            height: 26px;
+            padding: 3px 8px;
+            width: 50%;
+        }
+    }
+
+    .legal {
+        @include naked();
+        list-style: none;
+        text-align: right;
+        padding: $fLegalPadding;
+        @media (min-width: 768px) and (max-width: 991px) {
+            padding-top: 0;
+        }
+        li {
+            display: inline-block;
+            margin-left: 3px;
+            &:before {
+                content: "|";
+                display: block;
+                float: left;
+                margin-right: 5px;
+            }
+            &:first-child {
+                &:before {
+                    display: none;
+                }
+            }
+        }
+        a {
+            &, &:visited {
+                color: $fLegalLink;
+            }
+            &:hover, &:active, &:focus {
+                color: $fLegalHover;
+            }
+        }
+    }
+
+}

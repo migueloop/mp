@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  core:
+    environment:
+      NODE_ENV: developpment
+  api:
+    environment:
+      NODE_ENV: development
+    ports:
+      - "5001:3000"

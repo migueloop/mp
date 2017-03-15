@@ -1,0 +1,50 @@
+image: node:6.8.1
+
+cache:
+  paths:
+  - node_modules/
+
+stages:
+  - dev
+
+services:
+
+before_script:
+   - apt-get update && apt-get -y install sudo
+   - useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+   - sudo npm install --no-bin-links
+   - sudo npm update npm -g
+   - sudo npm install -g mkdirp      
+   - sudo npm install -g react@15.3.2 react-dom
+   - sudo npm install -g flux
+   - sudo npm install -g express
+   - sudo npm install -g redux
+   - sudo npm install -g node-sass     
+   - sudo npm install -g cron
+   - sudo npm install -g extend    
+   - sudo npm install -g webpack
+   - sudo npm install -g gulp@3.9.0 
+   - sudo npm install -g gulp-load-plugins
+   - sudo npm install -g gulp-watch
+   - sudo npm install -g gulp-sass
+   - sudo npm install -g gulp-cssnano
+   - sudo npm install -g gulp-concat   
+   - sudo npm install -g babel
+   - sudo npm install -g babel-cli 
+   - sudo npm install -g babel-plugin-syntax-object-rest-spread
+   - sudo npm install -g babel-plugin-transform-decorators-legacy
+   - sudo npm install -g babel-preset-es2015 
+   - sudo npm install -g babel-preset-react
+   - sudo npm install -g babel-preset-stage-0   
+   - sudo npm install rsync
+
+Deploy to DEV:
+  stage: dev
+  script:
+    
+    - sudo npm run build
+
+  tags:
+    - MP00
+  only:     
+     - develop

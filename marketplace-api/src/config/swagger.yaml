@@ -1,0 +1,1294 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Marketplace API
+# during dev, should point to your local machine
+# host: api-dev.intuiteev.io:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json; charset=UTF-8
+securityDefinitions:
+  AdminSecurity:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: JWT authentication
+paths:
+  /article/{idArticle}:
+    get:
+      x-swagger-router-controller: articles
+      description: Get article by id
+      tags: ["Articles"]
+      operationId: get
+      parameters:
+        - name: idArticle
+          in: path
+          description: the id of the article to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          enum:
+            - sncf
+            - hp
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Article"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /articles:
+    get:
+      x-swagger-router-controller: articles
+      description: Get list of published articles
+      tags: ["Articles"]
+      operationId: getAll
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Article"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments:
+    get:
+      x-swagger-router-controller: assignments
+      description: Get list of published articles
+      tags: ["Assignments"]
+      operationId: getAll
+      # security:
+      #   - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments/{id}:
+    get:
+      x-swagger-router-controller: assignments
+      description: Get an assignment
+      tags: ["Assignments"]
+      operationId: get
+      # security:
+      #   - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      x-swagger-router-controller: assignments
+      description: Delete an assignment
+      tags: ["Assignments"]
+      operationId: remove
+      security:
+        - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments/{id}/validate:
+    post:
+      x-swagger-router-controller: assignments
+      description: Request assignment validation
+      tags: ["Assignments"]
+      operationId: demandValidation
+      security:
+        - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      x-swagger-router-controller: assignments
+      description: Retire validation demand (send assignment to draft)
+      tags: ["Assignments"]
+      operationId: retire
+      security:
+        - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      x-swagger-router-controller: assignments
+      description: Validate and assignment
+      tags: ["Assignments"]
+      operationId: publish
+      security:
+        - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments/{id}/extra:
+    get:
+      x-swagger-router-controller: assignments
+      description: Request assignment validation
+      tags: ["Assignments"]
+      operationId: getExternalInfo
+      security:
+        - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments-order:
+    get:
+      x-swagger-router-controller: assignments-order
+      description: Get list of assignment orders
+      tags: ["Assigment Orders"]
+      operationId: getAll
+      # security:
+      #   - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments-order/{id}:
+    get:
+      x-swagger-router-controller: assignments-order
+      description: Get an assignment
+      tags: ["Assignment Orders"]
+      operationId: get
+      # security:
+      #   - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment Order id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments-order/{id}/extra:
+    get:
+      x-swagger-router-controller: assignments-order
+      description: Get an assignment order with extra data
+      tags: ["Assignment Orders"]
+      operationId: getExtra
+      # security:
+      #   - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: id
+          in: path
+          description: Assignment Order id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments-order-follow-up:
+    get:
+      x-swagger-router-controller: assignments-order-follow-up
+      description: Get list of follow ups
+      tags: ["Assignments Order Follow Up"]
+      operationId: getAll
+      # security:
+      #   - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /assignments-order-follow-up/{id}:
+    get:
+      x-swagger-router-controller: assignments-order-follow-up
+      description: Get an assignment order with extra data
+      tags: ["Assignments Order Follow Up"]
+      operationId: get
+      # security:
+      #   - AdminSecurity: []
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+        - name: userId
+          in: query
+          description: User id
+          required: true
+          type: string
+          default: 34
+        - name: id
+          in: path
+          description: Assignment Order id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /bundle/{idBundle}:
+    get:
+      x-swagger-router-controller: bundles
+      description: Get bundle by id
+      tags: ["Bundles"]
+      operationId: get
+      parameters:
+        - name: idBundle
+          in: path
+          description: the id of the bundle to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Bundle"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /bundles:
+    get:
+      tags: ["Bundles"]
+      x-swagger-router-controller: bundles
+      description: List of bundles
+      operationId: getAll
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Bundle"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /domains:
+    get:
+      tags: ["Domains"]
+      x-swagger-router-controller: domains
+      description: List of domains
+      operationId: getAll
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Domain"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /domain/{id}:
+    get:
+      tags: ["Domains"]
+      x-swagger-router-controller: domains
+      description: get one domain
+      operationId: get
+      parameters:
+        - name: id
+          in: path
+          description: the id of the domain to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Domain"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /domain/{id}/products:
+    get:
+      tags: ["Domains", "Products"]
+      x-swagger-router-controller: domains
+      description: get products of domain
+      operationId: getProducts
+      parameters:
+        - name: id
+          in: path
+          description: the id of the domain to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Product"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /domain/{id}/articles:
+    get:
+      tags: ["Domains", "Articles"]
+      x-swagger-router-controller: domains
+      description: get products of domain
+      operationId: getArticles
+      parameters:
+        - name: id
+          in: path
+          description: the id of the domain to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Article"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /domain/{id}/bundles:
+    get:
+      tags: ["Domains", "Bundles"]
+      x-swagger-router-controller: domains
+      description: get products of domain
+      operationId: getBundles
+      parameters:
+        - name: id
+          in: path
+          description: the id of the domain to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Bundle"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /home-carousel:
+    get:
+      x-swagger-router-controller: home-carousel
+      description: Get Home Carousel
+      tags: ["Misc"]
+      operationId: getAll
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/HomeCarousel"
+  /misc/keywords:
+    get:
+      x-swagger-router-controller: misc
+      description: Get list of Keywords
+      tags: ["Misc"]
+      operationId: getKeywords
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Misc"
+  /misc/companies:
+    get:
+      x-swagger-router-controller: misc
+      description: Get list of Companies
+      tags: ["Misc"]
+      operationId: getCompanies
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Misc"
+  /misc/platforms:
+    get:
+      x-swagger-router-controller: misc
+      description: Get list of Platform
+      tags: ["Misc"]
+      operationId: getPlatforms
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Misc"
+  /product/{idProduct}:
+    get:
+      x-swagger-router-controller: products
+      description: Get product by id
+      tags: ["Products"]
+      operationId: get
+      parameters:
+        - name: idProduct
+          in: path
+          description: the id of the product to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Product"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /product/{idProduct}/offers:
+    get:
+      x-swagger-router-controller: products
+      description: Get product by id
+      tags: ["Products"]
+      operationId: getOffers
+      parameters:
+        - name: idProduct
+          in: path
+          description: the id of the product to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Offer"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /products/:
+    get:
+      x-swagger-router-controller: products
+      description: Return array with all published products
+      tags: ["Products"]
+      operationId: getAll
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Product"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /products/latest/{amount}:
+    get:
+      x-swagger-router-controller: products
+      description: Return array with latest created products
+      tags: ["Products"]
+      operationId: getLatest
+      parameters:
+        - name: amount
+          in: path
+          description: the amount of product to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Product"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /seo:
+    get:
+      x-swagger-router-controller: seo
+      description: Return array with latest created products
+      tags: ["Misc"]
+      operationId: getSeoSettings
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /user/authorize:
+    post:
+      x-swagger-router-controller: user
+      description: get user token for private api calls
+      tags: ["User"]
+      operationId: authorize
+      parameters:
+        - name: credentials
+          in: body
+          description: Api credentials
+          required: true
+          schema:
+            $ref: "#/definitions/ApiCredentials"
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+  /user/{id}:
+    get:
+      x-swagger-router-controller: user
+      description: get user information
+      tags: ["User"]
+      operationId: get
+      security:
+        - AdminSecurity: []
+      parameters:
+        - name: id
+          in: path
+          description: get user information
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+  /user/connect:
+    post:
+      x-swagger-router-controller: user
+      description: get user token for private api calls
+      tags: ["User"]
+      operationId: connect
+      parameters:
+        - name: token
+          in: body
+          description: Api token
+          required: true
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: object
+  /user/login:
+    post:
+      x-swagger-router-controller: user
+      description: User Login
+      tags: ["User"]
+      operationId: login
+      parameters:
+        - name: user
+          in: body
+          description: action to be fired
+          required: true
+          schema:
+            $ref: "#/definitions/UserLogin"
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/User"
+  /user-corners:
+    get:
+      tags: ["User Corner"]
+      x-swagger-router-controller: user-corner
+      description: List of user corners
+      operationId: getAll
+      parameters:
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Domain"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /user-corner/{id}:
+    get:
+      tags: ["User Corner"]
+      x-swagger-router-controller: user-corner
+      description: get one domain
+      operationId: get
+      parameters:
+        - name: id
+          in: path
+          description: the id of the domain to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Domain"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /user-corner/{id}/products:
+    get:
+      tags: ["User Corner", "Products"]
+      x-swagger-router-controller: user-corner
+      description: get products of domain
+      operationId: getProducts
+      parameters:
+        - name: id
+          in: path
+          description: the id of the domain to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Product"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /user-corner/{id}/articles:
+    get:
+      tags: ["User Corner", "Articles"]
+      x-swagger-router-controller: user-corner
+      description: get products of domain
+      operationId: getArticles
+      parameters:
+        - name: id
+          in: path
+          description: the id of the domain to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Article"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /user-corner/{id}/bundles:
+    get:
+      tags: ["User Corner", "Bundles"]
+      x-swagger-router-controller: user-corner
+      description: get products of user corner
+      operationId: getBundles
+      parameters:
+        - name: id
+          in: path
+          description: the id of the user corner to retrieve
+          required: true
+          type: string
+        - name: X-Tenant
+          in: header
+          description: Tenant Name
+          required: true
+          type: string
+          format: string
+          default: sncf
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Bundle"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  ApiCredentials:
+    properties:
+      secret:
+        type: string
+      idUser:
+        type: integer
+  Article:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      alias:
+        type: string
+      baseline:
+        type: string
+      symmary:
+        type: string
+        example: "lorem ipsum"
+      keywords:
+        type: array
+        items:
+          $ref: "#/definitions/Misc"
+      domains:
+        type: array
+        items:
+          $ref: "#/definitions/Domain"
+  Bundle:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      alias:
+        type: string
+      baseline:
+        type: string
+      symmary:
+        type: string
+      keywords:
+        type: array
+        items:
+          $ref: "#/definitions/Misc"
+      domains:
+        type: array
+        items:
+          $ref: "#/definitions/Domain"
+  Domain:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      products:
+        type: array
+        items:
+          $ref: "#/definitions/Product"
+  HomeCarousel:
+    properties:
+      id:
+        type: integer
+      active:
+        type: boolean
+      buttonText:
+        type: string
+      content:
+        type: string
+      detailPagePicture:
+        type: string
+      link:
+        type: string
+      mainPicture:
+        type: string
+      mainPictureALT:
+        type: string
+      secondaryPictureALT:
+        type: string
+      title:
+        type: string
+  Misc:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+  Offer:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      amountRecurrence:
+        type: integer
+      unitRecurrence:
+        type: string
+      price:
+        type: integer
+      currency:
+        type: string
+      links:
+        type: object
+      products:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            type:
+              type: string
+            isIncluded:
+              type: boolean
+            isEnabled:
+              type: boolean
+  ProductFeature:
+    properties:
+      idProduct:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      order:
+        type: integer
+  Product:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      alias:
+        type: string
+      baseline:
+        type: string
+      submitObservation:
+        type: string
+      description:
+        type: string
+      publicationDate:
+        type: integer
+      state:
+        type: string
+      version:
+        type: string
+      type:
+        type: string
+      editorDescription:
+        type: string
+      editorHomepage:
+        type: string
+      editorLegalMentions:
+        type: string
+      editorLogo:
+        type: integer
+      last_update:
+        type: integer
+      creation_date:
+        type: integer
+      features:
+        type: array
+        items:
+          $ref: "#/definitions/ProductFeature"
+  User:
+    properties:
+      id:
+        type: integer
+      idRole:
+        type: integer
+      activated:
+        type: boolean
+      name:
+        type: string
+      lastname:
+        type: string
+      sex:
+        type: string
+      permissions:
+        type: array
+        items:
+          type: string
+      email:
+        type: string
+      tenant:
+        type: string
+  UserLogin:
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

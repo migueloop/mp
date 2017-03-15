@@ -1,0 +1,358 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Workflow system
+# basePath prefixes all resource paths
+basePath: /api
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /test:
+    get:
+      x-swagger-router-controller: test
+      description: Test Swagger
+      operationId: test
+      responses:
+        "200":
+          description: default response
+          schema:
+            $ref: "#/definitions/Object"
+        default:
+          description: response other than
+          schema:
+            $ref: "#/definitions/Error"
+  /test/{system}:
+    post:
+      x-swagger-router-controller: test
+      description: Test api actions
+      operationId: apicall
+      parameters:
+        - name: system
+          in: path
+          description: system
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: action to be fired
+          required: false
+          schema:
+            $ref: "#/definitions/Object"
+      responses:
+        "200":
+          description: default response
+          schema:
+            $ref: "#/definitions/Test"
+        default:
+          description: response other than
+          schema:
+            $ref: "#/definitions/Error"
+  /action/dispatch/:
+    post:
+      x-swagger-router-controller: workflow
+      description: Fire an action
+      operationId: dispatch
+      parameters:
+        - name: action
+          in: body
+          description: action to be fired
+          required: true
+          schema:
+            $ref: "#/definitions/Object"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /timeline/{timelineId}:
+    get:
+      x-swagger-router-controller: timeline
+      description: Get a timeline
+      operationId: get
+      parameters:
+        - name: timelineId
+          in: path
+          description: ID of timline to fetch
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Timeline"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /timeline/{timelineId}/activeStep:
+    get:
+      x-swagger-router-controller: timeline
+      description: Get a timeline active step
+      operationId: getActiveStep
+      parameters:
+        - name: timelineId
+          in: path
+          description: ID of timeline to fetch
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Step"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /workflow/:
+    post:
+      x-swagger-router-controller: workflow
+      description: Get a workflow
+      operationId: create
+      parameters:
+        - name: workflow
+          in: body
+          description: The workflow label and definitions to instanciate the template
+          required: true
+          schema:
+            $ref: "#/definitions/WorkflowDefinition"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/WorkflowCreated"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /workflow/create:
+    post:
+      x-swagger-router-controller: workflow
+      description: Create a new a workflow using the timelines templates on the request
+      operationId: createCustom
+      parameters:
+        - name: workflow
+          in: body
+          description: The workflow label and definitions to instanciate the template
+          required: true
+          schema:
+            $ref: "#/definitions/CustomWorkflowDefinition"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/WorkflowCreated"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /workflow/{workflowId}:
+    x-swagger-router-controller: workflow
+    get:
+      description: Get a workflow
+      operationId: getWorkflow
+      consumes:
+        - application/json
+      # format of the responses to the client (Accepts)
+      produces:
+        - application/json
+      parameters:
+        - name: workflowId
+          in: path
+          description: ID of workflow to fetch
+          required: true
+          type: string
+          format: ObjectID
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Workflow"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /workflow/{workflowId}/log:
+    x-swagger-router-controller: workflow
+    get:
+      description: Get a workflow log
+      operationId: getWorkflowLog
+      consumes:
+        - application/json
+      # format of the responses to the client (Accepts)
+      produces:
+        - application/json
+      parameters:
+        - name: workflowId
+          in: path
+          description: ID of workflow to fetch
+          required: true
+          type: string
+          format: ObjectID
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/WorkflowLog"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  Step:
+    properties:
+      status:
+        type: string
+      name:
+        type: string
+      label:
+        type: string
+      requires:
+        type: array
+        items:
+          type: string
+  Timeline:
+    required:
+      - id
+      - name
+      - steps
+      - icon
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      icon:
+        type: string
+      steps:
+        type: array
+        items:
+          $ref: "#/definitions/Step"
+  WorkflowCreated:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+  Workflow:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      timelines:
+        type: array
+        items:
+          $ref: "#/definitions/Timeline"
+  WorkflowLog:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      timelines:
+        type: array
+        items:
+          $ref: "#/definitions/TimelineLog"
+  TimelineLog:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      events:
+        type: array
+        items:
+          $ref: "#/definitions/EventLog"
+  EventLog:
+    required:
+      - stepName
+      - timestamp
+    properties:
+      stepName:
+        type: string
+      timestamp:
+        type: number
+  WorkflowDefinition:
+    required:
+      - label
+    properties:
+      label:
+        type: string
+      definitions:
+        type: object
+      timelines:
+        type: object
+  TimelineDefinition:
+    required:
+      - id
+      - label
+    properties:
+      label:
+        type: string
+      id:
+        type: string
+      definitions:
+        type: object
+      active:
+        type: integer
+      name:
+        type: string
+      steps:
+        type: array
+        items:
+          type: object
+  CustomWorkflowDefinition:
+    required:
+      - label
+      - timelines
+    properties:
+      label:
+        type: string
+      definitions:
+        type: object
+      timelines:
+        type: array
+        items:
+          $ref: "#/definitions/TimelineDefinition"
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+  Success:
+      required:
+        - message
+      properties:
+        message:
+          type: string
+  Object:
+    type:  object
+  Test:
+    properties:
+      system:
+        type: string
+      body:
+        type: object

@@ -1,0 +1,536 @@
+{
+  "label": "sncf",
+  "definitions": {
+    "pogenURL": "http://develop-po-mobility.intuiteev.io/api/purchaseOrders",
+    "GDPURL": "https://api-demo.digitaldimension.services",
+    "gdp": {
+      "userId": "96753861-7dbd-46cd-9435-c83366b0aa00"
+    }
+  },
+  "timelines": [
+    {
+      "label": "device",
+      "name": "Matériel",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDPURL}/api/associations",
+                "method": "post",
+                "data": {
+                  "employeeId": "@{employee.id}",
+                  "userId": "@{gdp.userId}",
+                  "orderPackageId": "@{assignmentId}",
+                  "line": {
+                    "comment": "Numéro de commande: @{assignmentId}",
+                    "status": 4
+                  },
+                  "device": {
+                    "comment": "Numéro de commande: {assignmentId}",
+                    "status": 4
+                  },
+                  "email": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "issued",
+          "name": "Commande émise",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "delivered",
+          "name": "Commande livrée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDPURL}/api/devices",
+                "method": "patch",
+                "data": {
+                  "device": {
+                    "status": 0
+                  },
+                  "userId": "@{gdp.userId}",
+                  "orderPackageId": "@{assignmentId}"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "consolidation",
+          "name": "Regroupement d’information",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "step",
+              "steps": [
+                {
+                  "type": "internal",
+                  "conditions": {
+                    "action": "line.delivered"
+                  }
+                },
+                {
+                  "type": "internal",
+                  "conditions": {
+                    "action": "email.completed"
+                  }
+                },
+                {
+                  "type": "internal",
+                  "conditions": {
+                    "action": "emm.completed"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "update-1",
+          "name": "Parc à jour",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{actionUrl}",
+                "method": "post",
+                "data": {
+                  "orderId": "@{orderId}",
+                  "step": "consolidation done"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "integration",
+          "name": "Intégration",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "update",
+          "name": "Parc à jour",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "complete",
+          "name": "Utilisateur doté",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "line",
+      "name": "Ligne",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required",
+                  "product": "required",
+                  "siret": "required"
+                },
+                "global": {
+                  "employee": "required",
+                  "user": "required"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{pogenURL}",
+                "method": "post",
+                "data": {
+                  "RequestId": "@{orderId}",
+                  "ConfigurationProfile": "Demo-MP-1",
+                  "OutputFileFormat": "Excel",
+                  "ResponseType": "url",
+                  "VariablesArray": {
+                    "Nom - Prenom": "@{user.name} @{user.lastname}",
+                    "Telephone": "@{user.phone}",
+                    "Email": "@{user.email}",
+                    "Num Compte de Facturation": "@{siret}",
+                    "Num Commande SNCF": "@{orderId}",
+                    "Nom du Receptionnaire": "@{user.name} @{user.lastname}",
+                    "Num du Receptionnaire": "@{user.phone}",
+                    "Receptionnaire nom": "@{employee.lastname}",
+                    "Receptionnaire prenom": "@{employee.name}",
+                    "Receptionnaire code cp": "",
+                    "Receptionnaire triple découpe": "@{product.name}",
+                    "Receptionnaire numero à porter": "",
+                    "Receptionnaire date de portabilité": "",
+                    "Receptionnaire num sim": "",
+                    "Receptionnaire profil": ""
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "issued",
+          "name": "Commande émise",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "delivered",
+          "name": "SIM livrée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDPURL}/api/lines",
+                "method": "patch",
+                "data": {
+                  "line": {
+                    "status": 0
+                  },
+                  "userId": "@{gdp.userId}",
+                  "orderPackageId": "@{assignmentId}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "email",
+      "name": "Email",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "issued",
+          "name": "Informations transmises",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "completed",
+          "name": "Travaux réalisés",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "emm",
+      "name": "Emm",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "issued",
+          "name": "Informations transmises",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "completed",
+          "name": "Travaux réalisés",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    }
+  ]
+}

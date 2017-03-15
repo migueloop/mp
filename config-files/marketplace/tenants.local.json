@@ -1,0 +1,23 @@
+{
+  "hp": [
+    "hp.local"
+  ],
+  "intuiteev":[
+    "intuiteev.local"
+  ],
+  "apple":[
+    "apple.local"
+  ],
+  "mobility": [
+    "mobility.local"
+  ],
+  "sncf": [
+    "sncf.local"
+  ],
+  "decathlon": [
+    "decathlon.local"
+  ],
+  "airbus": [
+    "airbus.local"
+  ]
+}

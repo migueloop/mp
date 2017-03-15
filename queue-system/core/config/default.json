@@ -1,0 +1,10 @@
+{
+  "redis": {
+    "port": 6379,
+    "host": "localhost"
+  },
+  "authentication_key": "keyboard-cat",
+  "socket": {
+    "port": 2725
+  }
+}

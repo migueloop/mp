@@ -1,0 +1,54 @@
+.mp-keywords {
+
+    @include naked();
+    list-style: none;
+
+    li {
+        display: inline-block;
+        min-width: $keywordWidth;
+        margin: $keywordMargin;
+    }
+    input {
+        display: none;
+    }
+    /*
+    button, a, a:focus {
+        color: $keywordLink;
+        background: $keywordBg;
+        background: #FFF;
+        border: 1px solid $keywordLink;
+        //border: none;
+        display: block;
+        width: 100%;
+        padding: 6px 20px;
+        font: $keywordFont;
+        text-align: center;
+        @include transition(all, 200ms);
+        &:hover, &.active, &.active:hover {
+            color: $keywordHover;
+            background: $keywordLink;
+            text-decoration: none;
+        }
+    }
+    */
+
+    button, a, a:focus {
+        color: $keywordLink;
+        background: $keywordBg;
+        //background: #FFF;
+        //border: 1px solid $keywordLink;
+        //border: none;
+        display: block;
+        width: 100%;
+        padding: 6px 20px;
+        font: $keywordFont;
+        text-align: center;
+        @include transition(all, 200ms);
+        &:hover, &.active, &.active:hover {
+            color: $keywordHover;
+            background: $keywordLink;
+            text-decoration: none;
+        }
+    }
+
+}

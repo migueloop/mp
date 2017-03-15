@@ -1,0 +1,13 @@
+// MIXINS
+@import '../../base/mixins.scss';
+
+/// VARS
+@import '../../base/vars.base.scss';
+@import 'vars.tenant.scss';
+
+// MAIN BASE
+@import '../../base/main.base.scss';
+
+// OTHERS
+@import '../../base/containers/frontoffice/detailpage.scss';
+

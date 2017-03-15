@@ -1,0 +1,96 @@
+////////
+// Naked
+////////
+
+@mixin naked() {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+//////////////////////
+// Sprite (DEPRECATED)
+//////////////////////
+
+@mixin sprite() {
+    background-image: url(../images/sprite.png);
+    background-repeat: no-repeat;
+    background-size: 250px 350px;
+}
+@mixin halfsprite() {
+    @include sprite();
+    background-size: 125px 175px;
+}
+
+
+////////
+// CSS 3
+////////
+
+@mixin transition($prop, $time) {
+    transition: $prop ease-out $time 0ms;
+    -webkit-transition: $prop ease-out $time 0ms;
+}
+
+@mixin transform($trans) {
+    transform: $trans;
+    -webkit-transform: $trans;
+}
+
+//////////
+// Webfont
+//////////
+
+@mixin webfont($name, $weight, $style, $path, $svg) {
+    font-family: $name;
+    src: url($path + '.eot');
+    src: url($path + '.eot?#iefix') format('embedded-opentype'),
+         url($path + '.woff') format('woff'),
+         url($path + '.ttf') format('truetype'),
+         url($path + '.svg#' + $svg) format('svg');
+    font-weight: $weight;
+    font-style: $style;
+}
+
+
+///////////////////////////////////////////////////////////
+// Full-Width : bootstrap override [like .container-fluid])
+///////////////////////////////////////////////////////////
+
+@mixin fullwidth() {
+    // FULL-WIDTH
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: initial;
+}
+
+
+
+///////////////////////////////////////////////////////////
+// Breakpoints
+///////////////////////////////////////////////////////////
+
+@mixin breakpoint($class) {
+    @if $class == xs {
+        @media (max-width: 767px) { @content; }
+    }
+
+    @else if $class == sm {
+        @media (min-width: 768px) { @content; }
+    }
+
+    @else if $class == md {
+        @media (min-width: 992px) { @content; }
+    }
+
+    @else if $class == lg {
+        @media (min-width: 1200px) { @content; }
+    }
+
+    @else {
+       // @warn "Breakpoint mixin supports: xs, sm, md, lg";
+        @media ($class) { @content; }
+    }
+}

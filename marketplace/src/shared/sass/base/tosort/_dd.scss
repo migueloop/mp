@@ -1,0 +1,392 @@
+//Override image-gallery@include less styles (react-image-gallery component)
+@mixin bulletsStyles() {
+  .image-gallery-bullets {
+    position: absolute;
+    top: -22px;
+    .image-gallery-bullet {
+      border: 1px solid #424F54;
+      box-shadow: 0 1px 0 #424F54;
+      &.active {
+        background: #424F54;
+      }
+    }
+  }
+}
+
+@mixin btn() {
+  .btn {
+    border-radius: 3px;
+  }
+  .btn-save, .btn-close-download, .btn-download {
+    border-color: #424F54;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/***
+
+NOT SURE WHAT THIS IS FROM .LESS VERSION
+
+& {
+  #bulletsStyles() !important;
+  #btn() !important;
+}
+
+***/
+
+
+//BO Settings
+
+
+
+
+//forms
+form {
+  label {
+    text-align: left;
+  }
+
+  input:not([type="radio"]):not([type="checkbox"]) {
+    border-radius: 0 0;
+    box-shadow: none;
+  }
+
+  textarea {
+    border-radius: 0 0;
+    box-shadow: none;
+  }
+
+  select {
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    margin-top: 5px;
+    option {
+      background: #424F54;
+      color: white;
+      border: none;
+    }
+  }
+
+  .labelInputTxt {
+    margin-top: 5px;
+  }
+
+  .formRadioInput {
+    .formRadioOptions {
+      margin-top: -2px;
+      div:not(:first-child) {
+        margin-left: 40px;
+      }
+      span {
+        position: absolute;
+        margin: 2px 0 0 0;
+      }
+    }
+  }
+}
+
+
+//Layout HP Header
+#header {
+  .hpHeaderLogo {
+    background-image: url(/public/images/hp_logo.png) !important;
+    background-position: 0px 2px !important;
+    background-size: 50px 50px !important;
+    width: 50px !important;
+  }
+
+  .microsoftHeaderLogo {
+    background-image: url(/public/images/microsoft-logo.png) !important;
+    background-position: -13px 2px !important;
+    background-size: 136px 50px !important;
+    width: 113px !important
+  }
+}
+
+//Images
+.centeredImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-wide {
+  width: 90%
+}
+
+//Article
+.article-title {
+  margin-left: 2% !important;
+}
+
+.article-header {
+  width: 100% !important;
+}
+
+.article-right-column {
+  float: right !important;
+  .category {
+    margin-top: -30px;
+    h4 {
+      padding-left: 40px !important;
+    }
+    i {
+      margin-top: 12px;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  .getArticleIcon {
+    width: 50px;
+    height: 50px;
+    color: white;
+  }
+}
+
+.content-left-boxes {
+  /*div:first-child{
+    padding-right: 6%;
+  }
+  border-right: #D2D2D2 double 1px;*/
+
+  float: left;
+  margin: 0 2% 2% 0;
+  max-width:420px;
+  img {
+    max-height: 280px;
+    max-width:420px;
+  }
+  .content-summary-box {
+    background-color: #F2F2F2;
+    margin-top: 40px;
+    min-height: 280px;
+    padding: 10px;
+    div:first-child {
+      white-space: pre-wrap;      /* CSS3 */
+      white-space: -moz-pre-wrap; /* Firefox */
+      white-space: -o-pre-wrap;   /* Opera 7 */
+      word-wrap: break-word;      /* IE */
+    }
+  }
+}
+
+.mp-article {
+  margin-bottom: 2em;
+}
+
+.article-content-main {
+  border-right: #D2D2D2 double 1px;
+  .description {
+    padding-right: 3%
+  }
+}
+
+//Modal select resource in the BO of article, product ... To change logo, images, etc..
+.modal-select-resource {
+  .modal-resources-image {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+  .modal-resources-no-image {
+    img {
+      height: 150px;
+      display: block;
+      margin: 0 auto;
+    }
+    p {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+  .modal-header {
+    .modal-title {
+      margin-top: 5px;
+    }
+    .search-box {
+      marginBottom: -15px;
+    }
+  }
+  .modal-footer {
+    div:first-child {
+      text-align: center;
+      margin-top: -20px;
+      position: relative;
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      margin-top: -10px;
+    }
+  }
+}
+
+.popover-change-logo {
+  margin-top: 70px !important;
+  width: 200px;
+  .arrow {
+    left: 31% !important;
+  }
+  button {
+    width: 100%;
+  }
+  .edit-logo-other-actions {
+    margin-top: 2%;
+  }
+}
+
+.item-header-logo {
+  cursor: pointer;
+  border: 0px;
+  max-width: 100%;
+  height: 60px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.item-picture-overlay-menu {
+  img {
+    position: relative;
+  }
+  button{
+    display:none;
+    // width:90%;
+    width: 40% !important;
+    left: 30% !important;
+    /*width: 100px;
+    left:35%;*/
+    position:absolute;
+  }
+}
+iframe {
+  border: none;
+}
+
+.rich-text {
+  -moz-appearance: textfield-multiline;
+  -webkit-appearance: textarea;
+  border: 1px solid gray;
+  overflow: auto;
+  padding: 2px;
+  min-height: 300px;
+  width: 100%;
+}
+
+.billing-system-offers-bo{
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+
+.fullwidth-iframe{
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+
+.centered-message-title {
+  display: block;
+  width: 32%;
+  height: 100%;
+  margin-top: 6%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.grey-border {
+  border: 1px solid #424f54 !important;
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
+.lowercase-text {
+  text-transform: lowercase;
+}
+
+.uppercase-text {
+  text-transform: uppercase;
+}
+
+.grey-button {
+  background-color: #424f54 !important;
+  color: white !important;
+  @extend .grey-border;
+}
+
+.white-button {
+  @extend .grey-border;
+  background-color: white !important;
+}
+
+.centered-text {
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
+
+.modal-tabs{
+  nav{
+    float: right;
+    span{
+      cursor: pointer;
+      &.active{
+        border-bottom: 3px solid #ff370f;
+        margin-bottom: -2px;
+        color: #ff370f;
+      }
+    }
+  }
+  border-bottom: 1px solid #f2f2f2;
+  margin-right: -85px;
+}
+
+
+
+// spinner for button icons
+.icon-spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+

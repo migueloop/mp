@@ -1,0 +1,7 @@
+/**
+ * Created by coud on 8/1/16.
+ */
+ export default {
+   SET_USER_PRIVATE_KEY: 'USER VOICE SET_USER_PRIVATE_KEY V02',
+   SET_INTERCOM_APP_ID: 'USER VOICE SET_INTERCOM_APP_ID V02',
+ };

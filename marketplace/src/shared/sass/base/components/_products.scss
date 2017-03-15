@@ -1,0 +1,87 @@
+/// Default products style
+//  See containers/home/products (home special 1-column display)
+.mp-products {
+
+  .product {
+
+    &.cursor {
+      cursor: pointer;
+    }
+
+    .thumb {
+      width: $productsThumb;
+      height: $productsThumb;
+      overflow: hidden;
+    }
+    img {
+      display: block;
+      max-height: 100%;
+      max-width: 100%;
+      position: relative;
+      z-index: 1;
+      left: 50%;
+      @include transform(translateX(-50%));
+    }
+
+    p.brand, h4.title {
+      margin: 0 0 3px;
+      text-transform: uppercase;
+      //word-break: normal;
+      word-break: break-all;
+
+    }
+    p.brand {
+      padding-top: 5px;
+      color: $pBrandText;
+      font: $pBrandFont;
+    }
+    h4.title {
+      color: $pTitleText;
+      font: $pTitleFont;
+    }
+    p.desc {
+      margin: 0;
+      color: $pDescText;
+      font: $pDescFont;
+    }
+
+    a {
+      display: block;
+      height: 100%;
+      &:hover, &:active, &:focus, &.active {
+        h4.title {
+          color: $pTitleHover;
+          text-decoration: underline;
+        }
+      }
+    }
+
+  }
+
+  /*
+      &.featured {
+          .product {
+              background: white;
+          }
+      }
+  */
+
+  &.featured, &.grid {
+    .product {
+      height: 200px;
+      text-align: center;
+      padding: 15px;
+      .thumb {
+        margin: 0 auto 15px;
+      }
+      &:hover {
+        background: $productsHover;
+      }
+    }
+  }
+
+  nav.pages {
+    text-align: center;
+  }
+
+}

@@ -1,0 +1,217 @@
+/*
+.mp-discussion {
+
+    .filters {
+        margin-bottom: 30px;
+        h4 {
+            font-size: 12px;
+            margin-top: 0;
+        }
+        ul {
+            @include naked();
+            list-style: none;
+            li {
+                display: block;
+                margin-bottom: 1px;
+                min-height: 30px;
+                &:after {
+                    content: "";
+                    display: block;
+                    clear: both;
+                }
+            }
+            button, .button {
+                @include naked();
+                display: block;
+                width: 100%;
+                min-height: 48px;
+                text-align: left;
+                background: $snippetBg;
+                padding: 15px;
+                &:hover, &:active, &:focus {
+                    background: $orange;
+                    color: $white;
+                }
+                &.none, &.none:hover {
+                    background: $snippetOff;
+                    color: $main;
+                }
+            }
+        }
+    }
+
+    .comments {
+        .comment {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px $commentLine solid;
+            font-size: 12px;
+        }
+        .info {
+            height: 40px;
+        }
+        .user {
+            float: left;
+            h5, .date {
+                margin: 0;
+            }
+            h5 {
+                font-size: 12px;
+                font-weight: 700;
+            }
+            .date {
+                font-size: 11px;
+            }
+        }
+        .review {
+            float: right;
+        }
+        .photo {
+            display: block;
+            float: left;
+            width: 50px;
+            height: 50px;
+            background: $light3; // temp
+        }
+        .verbatim {
+            padding-left: 100px;
+            margin: 0;
+        }
+        .reply {
+            position: relative;
+            margin-top: 15px;
+            padding: 10px;
+            background: $commentReply;
+            .admin, .answer {
+                margin: 0;
+            }
+            .admin {
+                float: left;
+                font-weight: 700;
+                width: 80px;
+                font-size: 10px;
+            }
+            .answer {
+                padding-left: 90px;
+            }
+            &:before {
+                content: "";
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                background: $commentReply;
+                top: -7px;
+                left: 103px;
+                transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+            }
+        }
+    }
+
+    .submit {
+        margin-bottom: 30px;
+        border: 1px $ratingLine solid;
+        padding: 20px 15px;
+        h4 {
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-top: 0;
+        }
+        .rating {
+            height: 60px;
+            margin-bottom: 15px;
+            ol, label {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            label {
+                width: 100px;
+                line-height: 1em;
+                font-size: 11px;
+                font-weight: 400;
+                i {
+                    display: none;
+                }
+                @media (max-width: 1199px) {
+                    width: 40px;
+                    text-align: center;
+                    span {
+                        display: none;
+                    }
+                    i {
+                        display: block;
+                    }
+                }
+                @media (max-width: 479px) {
+                    display: none;
+                }
+            }
+            ol {
+                @include naked();
+                list-style: none;
+                display: inline-block;
+                position: relative;
+                margin: 0 10px;
+                li {
+                    display: inline-block;
+                    position: relative;
+                    z-index: 2;
+                    &.past a {
+                        background: $ratingPast;
+                    }
+                    &.on a {
+                        background: $ratingOn;
+                    }
+                    &.cursor {
+                        position: absolute;
+                        top: -5px;
+                        left: 208px;
+                        z-index: 1;
+                        background: $ratingCursor;
+                        color: $ratingOn;
+                        font-weight: 600;
+                        font-size: 10px;
+                        width: 30px;
+                        text-align: center;
+                        padding: 38px 0 3px;
+                        box-shadow: 0 2px 3px $light3;
+                        -moz-box-shadow: 0 2px 3px $light3;
+                        -webkit-box-shadow: 0 2px 3px $light3;
+                        i {
+                            position: absolute;
+                            color: $ratingArrow;
+                            top: 40px;
+                            &:first-child {
+                                left: -14px;
+                            }
+                            &:last-child {
+                                right: -14px;
+                            }
+                        }
+                    }
+                }
+                a {
+                    display: block;
+                    background: $ratingOff;
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 100% 100%;
+                    text-indent: -9999px;
+                    outline: none;
+                    margin: 5px 8px;
+                }
+            }
+        }
+        .send {
+            text-align: right;
+            margin-bottom: 0;
+            .btn {
+                margin: 0;
+                height: 65px;
+            }
+        }
+    }
+
+}
+*/

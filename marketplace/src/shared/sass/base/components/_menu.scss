@@ -1,0 +1,138 @@
+.mp-menu {
+
+    border-bottom: 3px #EEE solid;
+    height: 25px;
+    div{padding: 0px;}
+
+    ul {
+        @include naked();
+        list-style: none;
+        width: 100%;
+        font: $menuFont;
+        text-transform: uppercase;
+        height: 22px;
+    }
+
+    li {
+
+        display: inline-block;
+        margin: 0px 12px 0px 12px;
+        &:first-of-type{margin-left: 0px;}
+        &:last-of-type{margin-right: 0px;}
+        position: relative;
+        font-size: 12px;
+        /// Mode the Active Class to the Anchor tag to be able to use the activeClass prop of the Link
+        &.active {
+            border-bottom: 3px $menuSlide solid;
+            margin-bottom: -2px;
+            a, .a {
+                &, &:visited {
+                    color: $menuHover;
+                }
+            }
+        }
+    }
+
+    a, .a {
+
+        display: block;
+        padding: 5px 0;
+        outline: none;
+        cursor: pointer;
+        &, &:visited {
+            color: $menuText;
+        }
+        &:active, &:hover, &:focus {
+            color: $menuHover;
+        }
+        &.active {
+            border-bottom: 3px $menuSlide solid;
+            margin-bottom: -2px;
+            color: $menuHover;
+        }
+        .badge {
+          &.top-badge {
+            top: 0px;
+            right: -8px;
+          }
+        }
+    }
+
+}
+
+// NEW SUB NAV
+
+.page-header {
+
+    ul.navbar-nav {
+
+        @include naked();
+        list-style: none;
+        &:not(.navbar-right){width: 100%;}
+        @include breakpoint(sm){
+            height: 41px;
+            border-bottom: 4px solid #EEE;
+        }
+
+        li {
+
+            margin: 0px;
+            padding: 0px;
+            border-bottom: 4px solid #EEE;
+            //&:first-of-type a {margin-left: 0px;padding-left: 0px!important;}
+            //&:last-of-type a {margin-right: 0px;padding-right: 0px!important;}
+
+            font: $menuFont;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 5px;
+
+            /// Mode the Active Class to the Anchor tag to be able to use the activeClass prop of the Link
+
+            &.active {
+
+                a{
+                    border-bottom: 4px $menuSlide solid;
+                    margin-bottom: -4px;
+                    &, &:visited {
+                        color: $menuHover;
+                    }
+                }
+            }
+        }
+
+        a {
+
+            padding: 6px 12px;
+            outline: none;
+            cursor: pointer;
+
+            &, &:visited {
+                color: $menuText;
+                background-color: transparent;
+            }
+            &:active, &:hover, &:focus {
+                color: $menuHover;
+                background-color: transparent;
+            }
+            &.active {
+                border-bottom: 4px $menuSlide solid;
+                margin-bottom: -4px;
+                color: $menuHover;
+                background-color: transparent;
+            }
+            .badge {
+                &.top-badge {
+                    top: 0px;
+                    right: -8px;
+                    .glyphicon{
+                        border: 2px sold blue;
+                    }
+                }
+            }
+        }
+
+    }
+
+}

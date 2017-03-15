@@ -1,0 +1,296 @@
+$color-tl: #999;
+$color-inprogress: #00bcd4;
+
+
+.timeline-component {
+
+    padding: 10px 25px 65px 25px;
+    border: 2px solid #DDD;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+    margin: 20px 0;
+
+    h3{
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        color: $color-grey;
+        margin-bottom: 15px;
+        .ico{
+            font-size: 24px;
+            margin-right: 10px;
+        }
+    }
+
+    .timeline {
+
+        width: 100%;
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0;
+
+        .step-inter {
+
+            flex-basis: auto;
+            flex-grow: 1;
+            margin: 0 2px;
+            height: 4px;
+
+            &.tl-step-done {
+                background-color: $color-green;
+                color: darken($color-green,5%);
+            }
+
+            &.tl-step-inprogress {
+                background-color: $color-inprogress;
+                color: darken($color-inprogress,5%);
+            }
+
+            &.tl-step-todo {
+                background-color: lighten($color-tl,15%);
+                color: $color-grey;
+            }
+
+            // LABELS
+            text-align: center;
+            baseline-shift: -10px;
+            line-height: 40px;
+            font-weight: bold;
+
+        }
+
+        .step-point {
+            width: 36px;
+            height: 36px;
+            display: inline-table;
+            border-radius: 50%;
+            margin: 0 2px;
+            text-align: center;
+            line-height: 32px;
+
+            &.tl-step-start,
+            &.tl-step-done {
+                background-color: $color-green;
+                color: #FFF!important;
+                font-size: 18px;
+            }
+
+            &.tl-step-start{
+                transform: translateY(11px);
+                font-size: 24px;
+            }
+
+            &.tl-step-inprogress {
+                background-color: $color-inprogress;
+                color: #FFF!important;
+                font-size: 24px;
+                line-height: 30px;
+            }
+
+            &.tl-step-todo {
+                background-color: lighten($color-tl,15%);
+                color: #FFF!important;
+                font-size: 24px;
+                line-height: 30px;
+            }
+
+        }
+
+        .step {
+            flex-basis: auto;
+            flex-grow: 1;
+            margin: 0;
+            height: 36px;
+
+            .hover-area{
+                width: 100%;
+                display: flex;
+                cursor: pointer;
+                height: 60px;
+                align-items: center;
+                justify-content: center;
+
+                &:hover{
+                    .tl-step-todo{
+                        background-color: darken($color-tl,15%);
+                        color: darken($color-tl,15%);
+                    }
+
+                    .tl-step-done {
+                        background-color: darken($color-green,15%);
+                        color: darken($color-green,15%);
+                    }
+                    .tl-step-inprogress {
+                        background-color: darken($color-inprogress,15%);
+                        color: darken($color-inprogress,15%);
+                    }
+                }
+            }
+
+        }
+
+
+
+
+    }
+
+
+
+
+    .timeline-ARROW-STYLE {
+        // border: 1px solid $color-grey;
+        width: 100%;
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0;
+        padding-right: 15px;
+        // width: 1%;
+        /*
+        animation: tl-ini 2s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        */
+        .step-point {
+            background-color: #FFF;
+            border: 2px solid $color-tl;
+            width: 36px;
+            height: 36px;
+            display: inline-table;
+            //border-radius: 50%;
+            // margin: 0 2px;
+            text-align: center;
+            line-height: 32px;
+            font-family: $layoutFont;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: $color-tl;
+
+            &.tl-step-done {
+                background-color: $color-green;
+                border-color: $color-green;
+                color: #FFF;
+            }
+
+            .ico {
+                font-size: 22px;
+                line-height: 30px;
+            }
+        }
+
+        .step-inter {
+            background-color: lighten($color-tl,25%);
+            border-color: lighten($color-tl,25%);
+            flex-basis: auto;
+            flex-grow: 1;
+            margin: 0 2px 0 0;
+            height: 36px;
+            cursor: pointer!important;
+
+            .ico {
+                font-size: 16px;
+                line-height: 30px;
+                margin-right: 10px !important;
+            }
+            cursor: default;
+            margin: 0 3px;
+            float: left;
+            position: relative;
+            user-select: none;
+            transition: all 0.3s ease;
+            &:hover{
+                background-color: lighten($color-tl,5%);
+                color: $color-greyDark;
+            }
+
+            &.tl-step-done {
+                background-color: $color-green;
+                border-color: $color-green;
+                color: #FFF;
+                &:hover{
+                    background-color: darken($color-green,10%);
+                    border-color: darken($color-green,10%);
+                }
+            }
+            &.tl-step-inprogress {
+                background-color: $color-inprogress;
+                border-color: $color-inprogress;
+                color: #FFF;
+                &:hover{
+                    background-color: darken($color-inprogress,10%);
+                    border-color: darken($color-inprogress,10%);
+                }
+            }
+            // LABELS
+            text-align: center;
+            baseline-shift: -10px;
+            line-height: 36px;
+            font-weight: bold;
+            color: $color-grey;
+        }
+
+        .step-inter:after,
+        .step-inter:before {
+            content: " ";
+            position: absolute;
+            top: 0;
+            right: -17px;
+            width: 0;
+            height: 0;
+            border-top: 19px solid transparent;
+            border-bottom: 17px solid transparent;
+            border-left: 17px solid lighten($color-tl,25%);
+            z-index: 2;
+            transition: border-color 0.2s ease;
+        }
+
+        .step-inter:after {
+            border-left: 17px solid lighten($color-tl,25%);
+
+        }
+        .step-inter:hover:after {
+            border-left: 17px solid lighten($color-tl,5%)!important;
+        }
+
+        .step-inter.tl-step-done:after {
+            border-left: 17px solid $color-green;
+
+        }
+        .step-inter.tl-step-done:hover:after {
+            border-left: 17px solid darken($color-green,10%)!important;
+        }
+
+        .step-inter.tl-step-inprogress:after {
+            border-left: 17px solid $color-inprogress;
+
+        }
+        .step-inter.tl-step-inprogress:hover:after {
+            border-left: 17px solid darken($color-inprogress,10%)!important;
+        }
+
+        .step-inter:before {
+            right: auto;
+            left: 0;
+            border-left: 17px solid #fff;
+            z-index: 0;
+        }
+
+        .step-inter:first-child:before {
+            border: none;
+        }
+
+        .step-inter:last-child:after {
+            border: none;
+        }
+
+
+    }
+}

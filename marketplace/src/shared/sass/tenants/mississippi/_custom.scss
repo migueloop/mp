@@ -1,0 +1,99 @@
+.corner {
+
+    a, .a {
+        &:before,
+        &:after {
+            font: 172px/172px 'icono';
+            left: 0;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            color: $blue;
+            @include transition(all, 200ms);
+        }
+        &:before {
+            z-index: 1;
+            content: "\e950";
+            opacity: .3;
+        }
+        &:after {
+            z-index: 2;
+            content: "\e951";
+            opacity: .7;
+            @include transform(translateY(15px) rotate(-5deg));
+        }
+        &:hover {
+            &:before {
+                @include transform(rotate(-5deg));
+            }
+            &:after {
+                @include transform(translateY(15px) translateX(-10px) rotate(8deg));
+            }
+        }
+        img {
+            position: relative;
+            width: 70px !important;
+            height: auto !important;
+            top: 45px;
+            z-index: 4;
+            margin-left: -18px;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+    }
+
+    &.corner-education, /// TEMP
+    &.corner-ressources-humaines, /// TEMP
+    &.corner-rh, /// TEMP
+    &.corner-custom1 {
+        a, .a {
+            &:before, &:after {
+                color: $custom1;
+            }
+        }
+        h4 {
+            background: fade($custom1, 80%) !important;
+        }
+    }
+
+    &.corner-industrie, /// TEMP
+    &.corner-mobilite, /// TEMP
+    &.corner-custom2 {
+        a, .a {
+            &:before, &:after {
+                color: $custom2;
+            }
+        }
+        h4 {
+            background: fade($custom2, 80%) !important;
+        }
+    }
+
+    &.corner-sante, /// TEMP
+    &.corner-transverse, /// TEMP
+    &.corner-custom3 {
+        a, .a {
+            &:before, &:after {
+                color: $custom3;
+            }
+        }
+        h4 {
+            background: fade($custom3, 80%) !important;
+        }
+    }
+
+    &.corner-retail, /// TEMP
+    &.corner-catalogue, /// TEMP
+    &.corner-custom4 {
+        a, .a {
+            &:before, &:after {
+                color: $custom4;
+            }
+        }
+        h4 {
+            background: fade($custom4, 80%) !important;
+        }
+    }
+
+}

@@ -1,0 +1,25 @@
+{
+  "hp": [
+    "api.local.hp"
+  ],
+  "intuiteev":[
+    "api.local.intuiteev"
+  ],
+  "apple":[
+    "api.local.apple"
+  ],
+  "mobility": [
+    "api.mobility.local",
+    "http://marketplace-api:8080"
+  ],
+  "sncf": [
+    "api.local.sncf",
+    "api.intuiteev.io"
+  ],
+  "decathlon": [
+    "api.local.decathlon"
+  ],
+  "airbus": [
+    "api.local.airbus"
+  ]
+}

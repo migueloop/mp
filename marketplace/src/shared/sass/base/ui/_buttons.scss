@@ -1,0 +1,240 @@
+@mixin button-mixin($color) {
+  &,&:focus{ background-color: $color;}
+  &:hover{ background-color: darken($color,15%);}
+  &:active{ background-color: darken($color,5%); }
+  &:disabled{background-color: $color; opacity: 0.45;}
+  &:disabled:hover{background-color: $color; opacity: 0.45;}
+}
+
+.btn {
+  color: #FFF;
+  @include button-mixin($color-grey);
+  height: 44px!important;
+  line-height: 44px;
+  font-size: 12px!important;
+  font-weight: bold!important;
+  text-transform: uppercase;
+  margin: 2px 0px 2px 2px;
+  padding: 0 1em;
+  border-radius: 3px;
+  border: 0px;
+  position: relative;
+  &:hover {
+    color: #FFF;
+  }
+  &:focus{
+    color: #FFF;
+  }
+
+  .ico,
+  .glyphicon{
+    line-height: 44px;
+    font-size: 14px!important;
+  }
+  .ico-left{
+    width: 24px;
+    position: absolute;
+    left: 10px;
+  }
+
+  .ico + span,
+  .glyphicon + span{
+    //position: relative;
+    //bottom: 2px;
+  }
+
+
+  &:active {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  &.btn-default {
+    @include button-mixin($color-grey);
+  }
+
+  &.btn-primary {
+    @include button-mixin($color-grey);
+    .ico-left {
+      font-size: 24px !important;
+      margin-right: 10px;
+    }
+  }
+
+
+  &.btn-small{
+    font-size: 10px!important;
+    padding: 0 15px!important;
+  }
+
+  &.btn-square{
+    width:44px;
+    font-size: 24px!important;
+    padding: 0px;
+    svg,img, .glyphicon{margin-top: -4px;}
+  }
+
+
+  &.btn-add {
+    @include button-mixin($color-greyDark);
+    .ico-left {
+      font-size: 20px !important;
+      margin-right: 10px;
+      margin-left: -5px;
+    }
+  }
+
+  &.btn-create {
+    float: right;
+    margin-top: -4%;
+    @include button-mixin($color-greyDark);
+  }
+
+  &.btn-validate {
+    @include button-mixin($color-green);
+  }
+
+  &.btn-ok {
+    @include button-mixin($color-green);
+    font-size: 40px!important;
+    line-height: 38px!important;
+  }
+
+  &.btn-publish {
+    @include button-mixin($color-green);
+  }
+
+  &.btn-green {
+    @include button-mixin($color-green);
+  }
+
+  &.btn-request-publication {
+    @include button-mixin($color-green);
+  }
+
+  &.btn-danger {
+    @include button-mixin($color-red);
+  }
+
+  &.btn-remove,
+  &.btn-delete{
+    @include button-mixin($color-red);
+  }
+
+  &.btn-view {
+    @include button-mixin($color-blue);
+  }
+
+  &.btn-edit {
+    @include button-mixin($color-blue);
+  }
+
+  &.btn-withdraw {
+    @include button-mixin($color-orange);
+  }
+
+  &.btn-request {
+    @include button-mixin($color-green);
+  }
+
+  &.btn-purchase-order {
+    @include button-mixin($color-green);
+    font-size: 18px!important;
+  }
+
+  &.btn-options {
+    @include button-mixin(lighten($color-grey,15%));
+    font-size: 18px!important;
+  }
+
+  &.dropdown-toggle {
+      @include button-mixin(lighten($color-grey,15%));
+      width: 48px!important;
+      line-height: 50px!important;
+
+      span {
+        // FOR BUTTONS USING TEXT LABELS
+        font-size: 20px;
+        line-height: 34px;
+        letter-spacing: 1px;
+      }
+  }
+}
+
+.btn-ico-left{
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.table-admin-wrapper{
+  margin: 0 -15px;
+
+  table{
+    th,td{
+      vertical-align: middle;
+      height: 48px;
+      word-spacing: 0.2em;
+    }
+    th{
+      padding: 0 15px!important;
+      background-color: $color-grey;
+      border-bottom-width: 1px;
+      text-align: left;
+      line-height: 48px;
+      font-size: 12px;
+      text-transform: uppercase;
+      //span{line-height: 48px;}
+      & > div{padding-top: 5px;}
+    }
+    td{
+      padding: 0 15px!important;
+    }
+  }
+
+}
+
+.table-actions{
+  min-width: 220px;
+  margin: 0px;
+  & > * {float:left;}
+  & > div > div {padding: 0px;}
+
+  .btn{
+    float: left!important;
+    // NEW:
+    //width:48px!important;
+    // <<< BEG TEMP FIXES:
+    width: initial;
+    // END TEMP FIXES >>>
+    margin-right: 5px!important;
+    .glyphicon{
+      font-size: 1.3em;
+      line-height: 44px;
+      top: 0px;
+    }
+
+
+    //.btn-edit{border: 1px solid red!important;}
+    .dropdown-menu{
+      padding: 0px;
+    }
+
+  }
+
+}
+
+
+.dropdown-toggle{
+  .option-horizontal{}
+}
+
+.date-responsive{
+  //cursor: default;
+}
+
+
+.header-panel {
+  #logoutButton {
+    @include button-mixin($color-greyDark);
+  }
+}

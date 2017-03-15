@@ -1,0 +1,56 @@
+.mp-articles {
+
+    .article {
+
+        .thumb {
+            height: $articlesThumb;
+            background: $articlesBg;
+            overflow: hidden;
+        }
+        img {
+            display: block;
+            max-height: 100%;
+            max-width: 100%;
+            position: relative;
+            z-index: 1;
+            left: 50%;
+            @include transform(translateX(-50%));
+        }
+
+        p.author, h4.title {
+            margin: 0 0 3px;
+        }
+        p.author {
+            padding-top: 5px;
+            color: $pBrandText;
+            font: $pBrandFont;
+            text-transform: uppercase;
+        }
+        h4.title {
+            color: $aTitleText;
+            font: $aTitleFont;
+        }
+
+        a {
+            height: 100%;
+            &:hover, &:active, &:focus, &.active {
+                h4.title {
+                    color: $aTitleHover;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+    }
+
+    & > .featured, & > .grid {
+        .article {
+
+        }
+    }
+
+    nav.pages {
+        text-align: center;
+    }
+
+}

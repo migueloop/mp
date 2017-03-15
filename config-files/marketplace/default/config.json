@@ -1,0 +1,259 @@
+{
+  "appId": 3,
+  "api": {
+    "key": "eae444a7-a8d1-495f-a7f2-42b59e66617a"
+  },
+  "billing": {
+    "credentials" : {
+      "username" : "061a9bd4-8288-4c7d-a1b0-514305b3127d",
+      "password" : "17ec105a-39d1-4ec7-99ae-c6596af9c27f"
+    },
+    "endpoint" : {
+      "api" : "https://api-233.proabono.com/",
+      "extended" : "https://mississippi-eur.via.proabono.com/"
+    }
+  },
+  "easyVista": {
+    "url": "https://digital-dimension.easyvista.com/WebService/SmoBridge.php?wsdl",
+    "endpoints": {
+      "create_request": "EZV_CreateRequest"
+    },
+    "account": "50005",
+    "login": "usr_operator",
+    "password": "usr_operator"
+  },
+  "referential": {
+    "disable": false,
+    "credentials" : {
+      "username" : "",
+      "password" : ""
+    },
+    "endpoints": {
+      "api" : {
+        "url": "https://develop-api-referential.intuiteev.io/api/",
+        "headers": {
+          "api-version": "1"
+        }
+      }
+    }
+  },
+  "gdp": {
+    "disable": false,
+    "credentials" : {
+      "username" : "",
+      "password" : ""
+    },
+    "endpoints": {
+      "api" : {
+        "url": "https://develop-api-gdp-mobility.intuiteev.io/api/",
+        "headers": {
+          "api-version": "1"
+        }
+      }
+    }
+  },
+  "identityserver":{
+    "configuration_endpoint":"https://develop-idserv.intuiteev.io/core/.well-known/openid-configuration"
+  },
+  "marketplace_api":{
+    "endpoint" : "http://marketplace-api:8080/",
+    "public_endpoint" : "http://develop.mobility.intuiteev.io:28080/"
+  },
+  "intercom": {
+    "app_id": "g3t0uasb",
+    "api_key": "e49a9ea9cf68ac1f0ad3ab234314ff95ea9da631",
+    "secret_key": "5GKBNdHQ7omjRKG-JCIER0D_0ND5veclk3dcXjRX"
+  },
+  "piwik": {
+    "site_id": null,
+    "instance_url": null
+  },
+  "secret": "3ba235d1-58fd-4b4b-b54a-0c467d9da188",
+  "clients": {
+    "marketplace": "eae444a7-a8d1-495f-a7f2-42b59e66617a"
+  },
+  "workflow": {
+    "disabled": false,
+    "endpoint" : {
+      "api" : {
+        "url": "http://event-manager-back:3000/api/"
+      },
+      "front": {
+        "url": "http://develop.api.intuiteev.io:3030/api/"
+      }
+    }
+  },
+  "poGen": {
+    "secret_key": "3LPENdN3ogqHGY)XswER1Q#0ND5cEdlk8dcXjSP"
+  },
+  "queue": {
+    "url": "http://queue-api:5014",
+    "authentication": "slkjhl9834798shdkjfhak8hjlkh"
+  },
+  "redis": {
+    "port": 6379,
+    "host": "redis",
+    "maxErrors": 1
+  },
+  "restrictions": {
+    "products": {
+      "MATERIAL": 3,
+      "SAAS": 1,
+      "MOBILE": 4,
+      "SERVICE": 1,
+      "LINE": 1
+    }
+  },
+  "upload": {
+    "path": "public/uploads"
+  },
+  "features": {
+    "products": {
+      "available": true,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": true,
+        "summary": {
+          "available": true
+        },
+        "features": {
+          "available": true
+        },
+        "resources": {
+          "available": true
+        },
+        "editor": {
+          "available": true
+        },
+        "settings": {
+          "available": true
+        },
+        "timeline": {
+          "available": true
+        },
+        "followUpTimelines": {
+          "available": true
+        },
+        "lineOptions": {
+          "available": true
+        },
+        "assignmentOptions": {
+          "available": true
+        }
+      }
+    },
+    "articles": {
+      "available": false,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": true,
+        "summary": {
+          "available": true
+        },
+        "editor": {
+          "available": true
+        },
+        "settings": {
+          "available": true
+        }
+      }
+    },
+    "packages": {
+      "available": true,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": false
+      }
+    },
+    "offers": {
+      "available": true,
+      "features": {
+        "available": false
+      }
+    },
+    "assignments": {
+      "available": true,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": false
+      }
+    },
+    "users": {
+      "available": true,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": true,
+        "create": {
+          "available": true
+        },
+        "acl": {
+          "available": true
+        },
+        "settings": {
+          "available": true
+        }
+      }
+    },
+    "settings": {
+      "available": true,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": false
+      }
+    },
+    "uservoice": {
+      "available": true,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": true
+      }
+    },
+    "help": {
+      "available": true,
+      "edit": {
+        "available": true
+      },
+      "list": {
+        "available": true
+      },
+      "features": {
+        "available": false
+      }
+    }
+  }
+}

@@ -1,0 +1,339 @@
+/////////
+// Colors
+/////////
+
+// Grayscale
+$white:          #ffffff; // background
+$whity:          #f9f9f9; // functions
+$light1:         #f5f6f6; // sidebar
+$light2:         #f2f2f2; // footer+tags
+$light3:         #eeeeee; // lines
+$medium1:        #939b9e; // burger
+$medium2:        #717171; // footer
+$dark1:          #212121; // push
+$dark2:          #151515; // main
+$black:          #000000; // title
+
+// Colors
+$steel:          #424f54;
+$blue:           #0097d1;
+$lightblue:      #5bc0de;
+$orange:         #ff370f;
+$pink:           #ffebe7;
+$lightgreen:     #5cb85c;
+$dangerRed: 	   #990000;
+$warningOrange:  #ec971f;
+$blue:           #435eaa;
+$whitish:        #fafafa;
+$turquoise:      #58c5d6;
+$brown:          #eeb9ab;
+
+// NEW DEFAULT colors
+$color-red:         rgb(172,49,30);
+$color-darkRed:     rgb(122,12,12);
+$color-blue:        rgb(73,172,220);
+$color-darkBlue:    rgb(52,79,150);
+$color-pink:        rgb(205,102,89);
+$color-green:       #7ED121;
+$color-orange:      #FD6232;
+
+// new greys
+$color-grey:        rgb(135,135,135);
+$color-greyDark:    rgb(60,60,60);
+$color-greyLight:   rgb(246,246,246);
+// new custom colors
+$color-whiteOff:    #f3f3f5;
+// $color-highlight:   #BFD69F; // GREEN
+// $color-highlight-hover: #efface; // GREEN
+// NEW HIGHLIGHT
+$color-highlight:   lighten($color-green,25%); // GREEN
+$color-highlight-hover: lighten($color-highlight,15%); // GREEN
+
+
+// Corners (custom)
+$custom1:        #c79d30; // Education
+$custom2:        #c64e32; // Industrie
+$custom3:        #51a595; // Sante
+$custom4:        #a84373; // Retail
+
+
+$padding: 25px;
+
+
+/////////////
+// Components
+/////////////
+
+/// Main
+$layoutBg:       $white;
+$layoutText:     $dark2;
+$layoutFont:     "Lato";
+$layoutFontSize: 13px;
+$layoutLink:     $blue;
+$layoutHover:    $dark2;
+$layoutAlt:      $turquoise;
+$layoutH2:       200 24px/32px $layoutFont;
+
+/// Bootstrap
+$btnTransform:   uppercase;
+$btnBorder:      2px $black solid;
+$btnOffBg:       $white;
+$btnOffText:     $black;
+$btnOffBorder:   $black;
+$btnOnBorder:    $blue;
+$btnHoverBg:     $blue;
+$btnHoverText:   $white;
+$btnActiveBg:    $dark2;
+$btnActiveText:  $white;
+$btnPageBg:      $white;
+$btnPageText:    $black;
+
+$btnDangerBg:    $dangerRed;
+$btnWarningBg:   $warningOrange;
+$btnInfoBg:      $lightblue;
+$btnSuccessBg:   $lightgreen;
+
+/// Header
+$headerBg:       $whitish;
+$headerMargin:   0;
+$headerOffset:   62px;
+// Header title
+$hTitleHeight:   80px;
+$hTitlePadding:  15px 0;
+
+// Brand
+$hBrandImage:    "../images/mississippi.png";
+$hBrandFont:     700 36px/50px $layoutFont;
+$hBrandText:     $black;
+$hBrandLink:     $black;
+$hBrandHover:    $steel;
+$hBrandWidth:    160px;
+$hBrandHeight:   60px;
+
+// Cobrand
+$hCobrandLine:   $light3;
+
+/// Toolbar
+$hToolbarBg:     $color-greyDark;
+$hToolbarFont:   400 15px/20px $layoutFont;
+$hToolbarIcon:   20px;
+$hToolbarLink:   $white;
+$hToolbarHover:  $color-grey;
+$hToolbarBadge:  lighten($color-red,10%);
+$hToolbarSep:    $color-grey;
+$hToolbarHeight: 48px;
+
+/// Burgers
+$burgerBg:       $whitish;
+$burgerPadding:  30px;
+$burgerBorder:   1px $blue solid;
+$burgerText:     $dark2;
+$burgerLink:     $blue;
+$burgerHover:    $turquoise;
+$burgerLine:     1px $light3 solid;
+$burgerDomains:  400 12px/18px $layoutFont;
+$burgerBtnBg:    $turquoise;
+$burgerBtnText:  $white;
+$burgerHeight:   120px;
+
+/// Footer
+$footerMargin:   0;
+$footerPadding:  10px 0;
+$footerBg:       $light2;
+$footerText:     $medium2;
+$footerBorder:   none;
+$footerFont:     400 10px/10px $layoutFont;
+// Countries
+$fCountryBg:     $white;
+$fCountryText:   $medium2;
+$fCountryBorder: 1px $light3 solid;
+// Legal
+$fLegalPadding:  10px 0;
+$fLegalLink:     $medium2;
+$fLegalHover:    $dark2;
+
+/// Slider
+$sliderBg:       $whitish;
+$sliderFont:     200 40px/46px $layoutFont;
+/// $sliderFont:     200 48px/52px $layoutFont; // Initial
+$sliderText:     $dark2;
+// Bullets
+$sBulletOnBg:    $turquoise;
+$sBulletOnText:  $white;
+$sBulletOffBg:   $blue;
+$sBulletOffText: $black;
+// Author
+$sAuthorFont:    600 12px/16px $layoutFont;
+$sAuthorText:    $turquoise;
+
+/// Menu
+$menuLine:       $light2;
+$menuSlide:      $color-red;
+$menuFont:       700 10px/12px $layoutFont;
+$menuText:       $dark2;
+$menuHover:      $color-red; // $blue?
+
+/// Keywords
+$keywordBg:      $color-whiteOff;
+$keywordActive:  $turquoise;
+$keywordLink:    $color-red;
+$keywordHover:   $white;
+$keywordMargin:  0 3px 3px 0;
+$keywordPadding: 4px 10px;
+$keywordFont:    400 italic 11px/12px $layoutFont;
+$keywordWidth:   100px;
+
+
+
+/// Home
+// Slider
+$hSliderHeight:  420px;
+$hSliderMask:    "";
+
+
+/// Corners list
+$cornersBg:      $whitish;
+$cornersHoverBg: $light2;
+$cornersFont:    500 12px/12px $layoutFont;
+$cornersHeight:  180px;
+$cornersStripe:  $color-grey;
+$cornersPadding: 25px 10px;
+$cornersText:    $white;
+
+
+/// Products
+$productsThumb:  70px;
+$productsBg:     transparent;
+$productsHover:  $light1;
+$productsLine:   $light3;
+// Brand
+$pBrandText:     $blue;
+$pBrandFont:     800 10px/12px $layoutFont;
+$pBrandHover:    $black;
+$pBrandHeader:   800 11px/13px $layoutFont;
+// Title
+$pTitleText:     $black;
+$pTitleFont:     300 13px/15px $layoutFont;
+$pTitleHover:    $blue;
+$pTitleHeader:   300 22px/25px $layoutFont;
+// Corner
+$pCornerText:    $custom2;
+$pCornerHeader:  600 13px/16px $layoutFont;
+// Description
+$pDescText:      $dark2;
+$pDescFont:      400 11px/13px $layoutFont;
+
+
+/// Articles
+$articlesThumb:  100px;
+$articlesBg:     transparent;
+$articlesHover:  $light1;
+$articlesLine:   $light3;
+// Author
+$aAuthorText:    $blue;
+$aAuthorFont:    800 10px/12px $layoutFont;
+$aAuthorHover:   $black;
+$aAuthorHeader:  800 11px/13px $layoutFont;
+// Title
+$aTitleText:     $black;
+$aTitleFont:     300 16px/20px $layoutFont;
+$aTitleHover:    $blue;
+// Corner
+$aCornerText:    $black;
+$aCornerHeader:  600 13px/16px $layoutFont;
+// Description
+$aDescText:      $dark2;
+$aDescFont:      400 11px/13px $layoutFont;
+
+
+/// Corner
+$cornerMargin:   -$headerOffset;
+$cornerPadding:  $headerOffset;
+// About
+$cAboutBg:       transparent;
+$cAboutFont:     200 46px/56px $layoutFont;
+$cAboutImg:      transparent;
+$cAboutHeight:   360px;
+// Filters
+$cFiltersBg:     $whity;
+$cFiltersActive: $turquoise;
+
+
+/// Product
+$productMargin:  -$headerOffset;
+$productPadding: $headerOffset + 60px;
+// Slider
+$pSliderHeight:  260px;
+$pSliderBg:      transparent;
+// More
+$pMoreFont:      400 12px/15px $layoutFont;
+$pMoreText:      $custom2;
+$pMoreHover:     $black;
+// Snipper
+$pSnippetBg:     $pink;
+$pSnippetPadding: 5px 15px;
+$pSnippetText:   $black;
+$pSnippetHover:  $black;
+$pSnippetFont:   400 12px/24px $layoutFont;
+$pSnippetIcon:   24px;
+// Feature
+$pFeatureBg:     $whity;
+$pFeatureText:   $dark2;
+$pFeatureBorder: 1px $light3 solid;
+$pFeatureHeight: 280px;
+$pFeatureNumber: $blue;
+$pFeatureTitle:  300 24px/28px $layoutFont;
+$pFeatureTitleText: $black;
+$pFeatureTitleHeight: 56px;
+$pFeatureDesc:   400 14px/17px $layoutFont;
+// Resource
+$pResourceBg:    $light2;
+$pResourceText:  $dark2;
+$pResourceBorder: 1px $light3 solid;
+$pResourceHeight: 180px;
+$pResourceTitle: 700 24px/28px $layoutFont;
+$pResourceFont:  500 12px/12px $layoutFont;
+$pResourceStripe: rgba(0, 0, 0, .5);
+$pResourcePadding: 10px;
+$pResourceText:   $white;
+
+/// Article
+$articleMargin:  -$headerOffset;
+$articlePadding: $headerOffset;
+// Slider
+$aSliderHeight:  260px;
+$aSliderBg:      $light1;
+// More
+$aMoreFont:      400 12px/15px $layoutFont;
+$aMoreText:      $custom2;
+$aMoreHover:     $black;
+
+
+/// Sidebar
+$sidebarBg:      $color-whiteOff;
+$sidebarText:    $dark2;
+$sidebarLink:    $blue;
+$sidebarHover:   $white;
+$sidebarScore:   $turquoise;
+$sidebarLine:    $white;
+// Type
+$sTypeIcon:      48px;
+$sTypeFont:      600 14px/18px $layoutFont;
+// Like
+$sLikeHover:     $turquoise;
+$sLikeActive:    $turquoise;
+$sLikeIcon:      28px;
+// Review
+$sRatingFont:    600 12px/28px $layoutFont;
+$sRatingText:    $color-greyDark;
+$sCommentsFont:  400 12px/28px $layoutFont;
+$sCommentsText:  $white;
+// Buy
+$sBuyBg:         $blue;
+$sBuyText:       $white;
+$sBuyHover:      $black;
+$sBuyIcon:       48px;
+// Tools
+$sToolsFont:     400 11px/12px $layoutFont;
+$sCommBg:        $color-greyDark;
+$sCommText:      $white;

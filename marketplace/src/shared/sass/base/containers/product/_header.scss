@@ -1,0 +1,57 @@
+.mp-product-header {
+
+    .thumb {
+        width: $productsThumb;
+        height: $productsThumb;
+        background: $productsBg; /// TEMP
+        float: left;
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+    .info {
+        padding-left: $productsThumb + 10px;
+    }
+
+    p.brand, h2.title, h3.categories {
+        margin: 0 0 3px;
+        text-transform: uppercase;
+    }
+    p.brand {
+        padding-top: 5px;
+        font: $pBrandHeader;
+        a {
+            &, &:visited {
+                color: $pBrandText;
+            }
+            &:hover, &:active, &:focus {
+                color: $pBrandHover;
+            }
+        }
+    }
+    h2.title {
+        font: $pTitleHeader;
+        a {
+            &, &:visited {
+                color: $pTitleText;
+            }
+            &:hover, &:active, &:focus {
+                color: $pTitleHover;
+                text-decoration: underline;
+            }
+        }
+    }
+    h3.categories {
+        font: $pCornerHeader;
+        color: $color-greyDark;
+        span:after {
+            content: ", ";
+        }
+        span:last-child:after {
+            content: "";
+        }
+    }
+
+}

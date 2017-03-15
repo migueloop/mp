@@ -1,0 +1,208 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Queue system
+# during dev, should point to your local machine
+# basePath prefixes all resource paths
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /test:
+    x-swagger-router-controller: test
+    post:
+      description: Post Test Endpoint
+      operationId: post
+      parameters:
+        - name: body
+          description: Email parameters
+          in: body
+          schema:
+            $ref: "#/definitions/Payload"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Payload"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /enqueue/email:
+    post:
+      x-swagger-router-controller: queue
+      description: Add an Email to the queue
+      operationId: addEmailToQueue
+      parameters:
+        - name: body
+          required: true
+          description: Email parameters
+          in: body
+          schema:
+            $ref: "#/definitions/EmailJob"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /enqueue/api:
+    post:
+      x-swagger-router-controller: queue
+      description: Add an Email to the queue
+      operationId: addApiToQueue
+      parameters:
+        - name: body
+          required: true
+          description: Email parameters
+          in: body
+          schema:
+            $ref: "#/definitions/ApiJob"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /enqueue/type/{queueType}:
+    # binds a127 app logic to a route
+    post:
+      x-swagger-router-controller: queue
+      description: Returns 'Hello' to the caller
+      operationId: addToQueue
+      parameters:
+        - name: queueType
+          in: path
+          description: The name of the person to whom to say hello
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: Description of the body
+          required: true
+          schema:
+            $ref: "#/definitions/QueueJob"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  QueueJob:
+    required:
+      - payload
+    properties:
+      payload:
+        type:  object
+  Payload:
+    type:  object
+  EmailOptions:
+    required:
+      - from
+      - to
+      - subject
+    properties:
+      from:
+        type: string
+        example: User <user@digitaldimension.es>
+      to:
+        type: string
+        example: user@digitaldimension.es
+      subject:
+        type: string
+        example: Subject of the email
+      text:
+        type: string
+        example: Plain text to send
+      html:
+        type: string
+        example: <p>This contain <b>HTML</b></p>
+  EmailJob:
+    required:
+      - from
+      - options
+    properties:
+      from:
+        type: string
+        example: user@digitaldimension.es
+        description: this email must have the transport information on the email worker configuration
+      options:
+        $ref: "#/definitions/EmailOptions"
+      webhook:
+        $ref: "#/definitions/Webhook"
+  ApiJob:
+    required:
+      - method
+      - endpoint
+    properties:
+      method:
+        type: string
+        example: POST
+      endpoint:
+        type: string
+        example: http://endpoint.com/api/
+      webhook:
+        $ref: "#/definitions/Webhook"
+      params:
+        type: object
+        description: body data that will be on the api call
+      headers:
+        type: object
+      options:
+        type: object
+  Webhook:
+    description: if defined this endpoint will be called after the queue process the api call, with the api parameres, the response of the api call and the params inside the webhook
+    required:
+      - endpoint
+      - method
+    properties:
+      endpoint:
+        type: string
+        example: http://webhook-endpoint.com/webhook
+      method:
+        type: string
+        example: POST
+      params:
+        type: object
+        description: Json that will be returned on the webhook call
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

@@ -1,0 +1,51 @@
+.mp-article {
+
+    background: transparent no-repeat top;
+    background-size: 100% auto;
+
+    .mp-sidebar {
+        margin-top: -102px;
+        @media (min-width: 1199px) {
+            margin-right: -50px;
+            padding-right: 50px;
+        }
+        @media (min-width: 1340px) {
+            margin-right: -100px;
+            padding-right: 100px;
+        }
+        @media (min-width: 1440px) {
+            margin-right: -150px;
+            padding-right: 150px;
+        }
+        @media (min-width: 1540px) {
+            margin-right: -200px;
+            padding-right: 200px;
+        }
+        padding-top: 102px;
+        min-height: 1080px;
+        background: transparent no-repeat top left;
+        background-size: 100% auto;
+        .btn-default,
+        .btn-primary {
+            color: $blue;
+        }
+        .btn-primary {
+            border-color: $blue;
+        }
+    }
+
+    background-image: url(../images/product-industrie.png);
+    .mp-sidebar {
+        background-image: url(../images/sidebar-industrie.png);
+    }
+
+    &.article-industrie, /// TEMP
+    &.article-custom2 {
+        background-image: url(../images/product-industrie.png);
+        .mp-sidebar {
+            background-image: url(../images/sidebar-industrie.png);
+        }
+    }
+
+
+}

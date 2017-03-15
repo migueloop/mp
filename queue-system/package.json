@@ -1,0 +1,30 @@
+{
+  "name": "queue-system",
+  "version": "1.0.0",
+  "description": "Run the command",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-eslint": "6.0.5",
+    "eslint": "2.3.0",
+    "eslint-config-airbnb": "6.1.0",
+    "eslint-plugin-react": "4.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:up": "docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d --build",
+    "docker:down": "docker-compose -f docker-compose.yml -f docker-compose.production.yml down",
+    "docker:restart": "npm run docker:down && npm run docker:up",
+    "docker-dev:up": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.dev.local.yml up --build",
+    "docker-dev:down": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.dev.local.yml down",
+    "docker-dev:restart": "npm run docker-dev:down && npm run docker-dev:up"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:coud/event-manager.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
+

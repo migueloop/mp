@@ -1,0 +1,22 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "nightwatch-tests/**"
+  ],
+  "verbose": false,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "env": {
+    "NODE_PATH": "./src/server:./src/shared",
+    "NODE_ENV": "development",
+    "NODEMON" : true,
+    "API_V02_ENDPOINT": "http://localhost:10010/",
+    "API_V02_ENDPOINT_PUBLIC": "http://localhost:10010/",
+    "PORT": 8000,
+    "setup_type": "osx"
+  },
+  "ext": "js jsx"
+}

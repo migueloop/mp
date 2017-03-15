@@ -1,0 +1,59 @@
+{
+  "appId": 3,
+  "billing": {
+    "credentials" : {
+      "username" : "061a9bd4-8288-4c7d-a1b0-514305b3127d",
+      "password" : "17ec105a-39d1-4ec7-99ae-c6596af9c27f"
+    },
+    "endpoint" : {
+      "api" : "https://api-233.proabono.com/",
+      "extended" : "https://mississippi-eur.via.proabono.com/"
+    }
+  },
+  "secret": "3ba235d1-58fd-4b4b-b54a-0c467d9da188",
+  "clients": {
+    "marketplace": "eae444a7-a8d1-495f-a7f2-42b59e66617a"
+  },
+  "referential": {
+    "disable": false,
+    "credentials" : {
+      "username" : "",
+      "password" : ""
+    },
+    "endpoints": {
+      "api" : {
+        "url": "https://api-referential.digitaldimension.services/api/",
+        "headers": {
+          "api-version": "1"
+        }
+      }
+    }
+  },
+  "gdp": {
+    "disable": false,
+    "credentials" : {
+      "username" : "",
+      "password" : ""
+    },
+    "endpoints": {
+      "api" : {
+        "url": "https://api-gdp.digitaldimension.services/api/",
+        "headers": {
+          "api-version": "1"
+        }
+      }
+    }
+  },
+  "workflow": {
+    "disable": false,
+    "credentials" : {
+      "username" : "",
+      "password" : ""
+    },
+    "endpoints": {
+      "api" : {
+        "url": "http://bo.timeline.intuiteev.io/api/"
+      }
+    }
+  }
+}

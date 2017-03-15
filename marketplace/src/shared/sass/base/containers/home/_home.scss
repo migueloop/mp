@@ -1,0 +1,117 @@
+.front{
+    .header-panel{
+     ul.domains{ list-style-type: none;}
+    }
+}
+
+
+
+.mp-home {
+
+
+
+    .image-gallery,
+    .image-gallery-slide,
+    .mp-carousel,
+    .carousel-inner > .item,
+    .carousel-control {
+        height: $hSliderHeight;
+    }
+
+    .mp-carousel {
+
+        position: relative;
+        z-index: 80;
+        margin-bottom: 30px;
+
+        &:after {
+            content: "";
+            position: absolute;
+            z-index: 10;
+            top: -$headerOffset;
+            left: 0;
+            width: 100%;
+            height: $hSliderHeight + $headerOffset;
+            // background: transparent url($hSliderMask) no-repeat bottom;
+            background-size: cover;
+            pointer-events: none;
+        }
+
+        .carousel-inner .container {
+            z-index: 12;
+            .text {
+                margin-top: -$headerOffset;
+            }
+        }
+
+        .carousel-control {
+            z-index: 20;
+        }
+
+        .carousel-indicators li{
+
+            &:before{content: "";border-bottom: 0px!important;border-bottom-color:transparent!important;}
+            &:after {content: "";border-bottom: 0px!important;border-bottom-color:transparent!important;}
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            background: rgba(0,0,0,0.33);
+            transition: all .2s ease-out 0ms;
+            margin: 5px 3px;
+            cursor: pointer;
+            border-radius: 100%;
+            border: 2px solid #FFF;
+            &.active{
+                background: rgba(255,255,255,0.66);
+            }
+
+        }
+
+        .carousel-control.left,
+        .carousel-control.right{
+            display: none;
+        }
+
+        .text{
+            // TEXT CONTAINER
+            //margin-top: -62px;
+            width: 75%;
+            margin: 0 auto;
+            //*{color: #FFF!important;}
+        }
+
+        .title{
+            font-family: $layoutFont;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 48px;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #FFF;
+            //*{color: #FFF!important;}
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.33);
+
+
+        }
+
+    }
+
+    .mp-corners,
+    .mp-products {
+
+        margin-top: $padding;
+        & > h2 {
+            margin-bottom: $padding;
+        }
+
+        .thumb {
+            background-size: cover;
+            background-position: 50% 50%;
+        }
+
+    }
+
+
+
+}

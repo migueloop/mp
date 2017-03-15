@@ -1,0 +1,1255 @@
+{
+  "timelines": [
+    {
+      "label": "device",
+      "name": "Matériel",
+      "active": 0,
+      "definitions": {
+        "GDP_URL": "https://api-gdp.digitaldimension.services/api"
+      },
+      "steps": [
+        {
+          "label": "tl_step_bdc_envoye",
+          "name": "BdC envoyé",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required",
+                  "deviceId": "required"
+                },
+                "global": {
+                  "userId": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "tl_step_fleet_updated_device_1",
+          "name": "Mise à jour du parc",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "tl_step_order_received",
+          "name": "Cde réceptionée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+          ]
+        },
+        {
+          "label": "tl_step_fleet_updated_device_2",
+          "name": "Mise à jour du parc",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              },
+              "mapper": {
+                "local": {
+                  "imei": "body.imei",
+                  "serialNumber": "body.serialNumber",
+                  "purchaseDate": "body.purchaseDate",
+                  "guarantee": "body.guarantee"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{QUEUE_URL}/enqueue/api",
+                "method": "post",
+                "data": {
+                  "method": "PATCH",
+                  "endpoint": "@{GDP_URL}/devices/@{deviceId}",
+                  "params": {
+                    "device": {
+                      "imei": "@{imei}",
+                      "serialNumber": "@{serialNumber}",
+                      "purchaseDate": "@{purchaseDate}",
+                      "guarantee": "@{guarantee}"
+                    },
+                    "userId": "@{userId}",
+                    "orderPackageId": "@{assignmentId}"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "tl_step_intregation_request",
+          "name": "Demande d'intégration",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "tl_step_integration_achieved",
+          "name": "Intégration réalisée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{actionUrl}",
+                "method": "post",
+                "data": {
+                  "orderId": "@{orderId}",
+                  "step": "consolidation done"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "tl_step_released_terminal_to_user",
+          "name": "Terminal livré à l'utilisateur",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "tl_step_user_confirms_reception",
+          "name": "Collaborateur confirme réception",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "line",
+      "name": "Ligne",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "tl_step_bdc_sent",
+          "name": "BdC envoyé",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required",
+                  "lineId": "required"
+                },
+                "global": {
+                  "userId": "required"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{QUEUE_URL}/enqueue/api",
+                "method": "post",
+                "data": {
+                  "method": "POST",
+                  "endpoint": "@{PO_URL}",
+                  "params": {
+                    "RequestId": "@{orderId}",
+                    "ConfigurationProfile": "Demo-MP-1",
+                    "OutputFileFormat": "Excel",
+                    "ResponseType": "url",
+                    "VariablesArray": {
+                      "Nom - Prenom": "@{user.name} @{user.lastname}",
+                      "Telephone": "@{user.phone}",
+                      "Email": "@{user.email}",
+                      "Num Compte de Facturation": "@{siret}",
+                      "Num Commande SNCF": "@{orderId}",
+                      "Nom du Receptionnaire": "@{user.name} @{user.lastname}",
+                      "Num du Receptionnaire": "@{user.phone}",
+                      "Receptionnaire nom": "@{employee.lastname}",
+                      "Receptionnaire prenom": "@{employee.name}",
+                      "Receptionnaire code cp": "",
+                      "Receptionnaire triple découpe": "@{product.name}",
+                      "Receptionnaire numero à porter": "",
+                      "Receptionnaire date de portabilité": "",
+                      "Receptionnaire num sim": "",
+                      "Receptionnaire profil": ""
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "tl_step_released_sim_to_user",
+          "name": "SIM livrée à utilisateur",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "tl_step_activated_line",
+          "name": "Ligne activée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "tl_step_fleet_updated_line_1",
+          "name": "Mise à jour du parc",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              },
+              "mapper": {
+                "local": {
+                  "phoneNumber": "body.phoneNumber",
+                  "billingAccountId": "body.billingAccountId",
+                  "iccid": "body.iccid",
+                  "puK1": "body.puK1",
+                  "puK2": "body.puK2",
+                  "piN1": "body.piN1",
+                  "rio": "body.rio",
+                  "userId": "body.userId"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDP_URL}/lines/@{lineId}?userId=@{userId}",
+                "method": "PATCH",
+                "data": {
+                  "phoneNumber": "@{phoneNumber}",
+                  "billingAccountId": "@{billingAccountId}",
+                  "simCard_ICCID": "@{iccid}",
+                  "puk1": "@{puK1}",
+                  "puk2": "@{puK2}",
+                  "pin1": "@{piN1}",
+                  "rio": "@{rio}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Easyvista",
+      "name": "ITSM",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Initial",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idTicket": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "return_material",
+          "name": "Return material",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idTicket": {
+                    "comparationType": "equal",
+                    "value": "@{idTicket}"
+                  },
+                  "stepName": {
+                    "comparationType": "equal",
+                    "value": "return_material"
+                  },
+                  "system": {
+                    "comparationType": "equal",
+                    "value": "EASYVISTA"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "quotation_accepted",
+          "name": "Quotation accepted",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idTicket": {
+                    "comparationType": "equal",
+                    "value": "@{idTicket}"
+                  },
+                  "stepName": {
+                    "comparationType": "equal",
+                    "value": "quotation_accepted"
+                  },
+                  "system": {
+                    "comparationType": "equal",
+                    "value": "EASYVISTA"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "repair",
+          "name": "Repair",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idTicket": {
+                    "comparationType": "equal",
+                    "value": "@{idTicket}"
+                  },
+                  "stepName": {
+                    "comparationType": "equal",
+                    "value": "repair"
+                  },
+                  "system": {
+                    "comparationType": "equal",
+                    "value": "EASYVISTA"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "in_stock",
+          "name": "In stock",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idTicket": {
+                    "comparationType": "equal",
+                    "value": "@{idTicket}"
+                  },
+                  "stepName": {
+                    "comparationType": "equal",
+                    "value": "in_stock"
+                  },
+                  "system": {
+                    "comparationType": "equal",
+                    "value": "EASYVISTA"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "sav_vol_and_perte",
+      "name": "SAV - Vol & Perte",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "device_wiping",
+          "name": "Effacement du terminal",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idFollowUp": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "line_suspension",
+          "name": "Suspension de la ligne",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "device_preparation",
+          "name": "Prèparation du terminal",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "device_delivery",
+          "name": "Envoi du terminal",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "sav_casse",
+      "name": "SAV - Casee",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "device_diagnostic",
+          "name": "Diasnostic de la casse",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idFollowUp": "required",
+                  "gdpId": "required"
+                }
+              },
+              "mapper": {
+                "local": {
+                  "broken_parts": "body.broken_parts",
+                  "comments": "body.comments"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{QUEUE_URL}/enqueue/api",
+                "method": "post",
+                "data": {
+                  "method": "PUT",
+                  "endpoint": "@{GDP_URL}/devices/@{gdpId}",
+                  "params": {
+                    "status": "@{broken_parts}",
+                    "comment": "@{comments}"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "device_repair",
+          "name": "Rèparation du terminal",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "gfn_validation",
+          "name": "Validation GFN",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "device_ready",
+          "name": "Terminal prêt",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              },
+              "mapper": {
+                "local": {
+                  "comments": "body.comments"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{QUEUE_URL}/enqueue/api",
+                "method": "post",
+                "data": {
+                  "method": "PUT",
+                  "endpoint": "@{GDP_URL}/devices/@{gdpId}",
+                  "params": {
+                    "comment": "@{comments}"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "sc_device_delivery",
+          "name": "Envoi du terminal",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              },
+              "mapper": {
+                "local": {
+                  "trackingNumber": "body.tracking_number",
+                  "additionalInfo": "body.additional_info"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{QUEUE_URL}/enqueue/api",
+                "method": "post",
+                "data": {
+                  "method": "PUT",
+                  "endpoint": "@{GDP_URL}/devices/@{gdpId}",
+                  "params": {
+                    "trackingNumber": "@{trackingNumber}",
+                    "comment": "@{additionalInfo}"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "sav_casse_2",
+      "name": "SAV - Casee 2",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "sav_en_cours",
+          "name": "SAV en cours",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idFollowUp": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "material_sent",
+          "name": "Envoi Matériel HS",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "material_received",
+          "name": "Réception Matériel HS",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "repair_status",
+          "name": "Status de la réparation",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "line_suspension",
+      "name": "Suspension ligne",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "ls_request_in_progress",
+          "name": "Demande en cours",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idFollowUp": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "line_suspended",
+          "name": "Ligne suspendue",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "chgt_options",
+      "name": "Chgt Options",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "request_in_progress",
+          "name": "Demande en cours",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idFollowUp": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "new_options_active",
+          "name": "Nouvelles options actives",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "sim_card",
+      "name": "Carte SIM",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "sim_code_created",
+          "name": "Cde SIM réalisée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idFollowUp": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "sim_received",
+          "name": "SIM réceptionnée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "sim_activated",
+          "name": "SIM activée",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "portability",
+      "name": "Portability",
+      "active": 0,
+      "definitions": {
+          "GDP_URL": "https://api-gdp.digitaldimension.services/api"
+      },
+      "steps": [
+        {
+          "label": "porta_qualif",
+          "name": "Qualification",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "idFollowUp": "required",
+                  "idGdp": "required",
+                  "userId": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "porta_ready",
+          "name": "Dde prise en compte",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "porta_operator",
+          "name": "Dde chez l'opérateur",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "porta_operator_ok",
+          "name": "Retour Opérateur",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "porta_closed",
+          "name": "Base màj",
+          "log": {
+            "startedAt": null,
+            "doneAt": null,
+            "doneBy": null
+          },
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "idFollowUp": {
+                    "comparationType": "equal",
+                    "value": "@{idFollowUp}"
+                  }
+                }
+              },
+              "mapper": {
+                "local": {
+                  "new_sim_number_2": "body.new_sim_number",
+                  "orderPackageId": "body.assignmentId"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDP_URL}/lines/@{idGdp}/?userId=@{userId}",
+                "method": "PATCH",
+                "data": {
+                  "simCard_ICCID": "@{new_sim_number_2}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

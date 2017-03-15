@@ -1,0 +1,96 @@
+/// Header
+.mp-header {
+
+    margin: $headerMargin;
+
+}
+
+
+/// Header title
+.mp-header-title {
+
+    height: $hTitleHeight;
+    padding: $hTitlePadding;
+
+    .brand {
+        @include naked();
+        font: $hBrandFont;
+        color: $hBrandText;
+        a {
+            &, &:visited {
+                color: $hBrandLink;
+            }
+            &:hover, &:active, &:focus {
+                color: $hBrandHover;
+            }
+        }
+    }
+
+    .cobrand {
+        @include naked();
+        height: 55px;
+        text-align: right;
+        list-style: none;
+        @media (max-width: 767px) {
+            display: none;
+        }
+        li {
+            display: inline-block;
+            &:before {
+                content: "";
+                display: block;
+                float: left;
+                width: 1px;
+                height: 40px;
+                margin: 8px 10px 0 10px;
+                background: $hCobrandLine;
+            }
+            &:first-child {
+                &:before {
+                    display: none;
+                }
+            }
+        }
+        a {
+            .text {
+                display: none;
+            }
+            img {
+                display: inline-block;
+                height: 50px;
+                width: auto;
+            }
+        }
+    }
+
+}
+.page-admin{
+
+    .mp-header-title .container{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        width: initial;
+
+    }
+
+}
+
+.content-header {
+  margin: 0 -15px;
+  .btn-add{
+    z-index:0!important; // QUICK FIX
+  }
+}
+
+
+.content-header h3,
+.content-title,
+#main-header
+{
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+}

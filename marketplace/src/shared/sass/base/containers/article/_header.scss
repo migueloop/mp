@@ -1,0 +1,76 @@
+.mp-article-header {
+
+    height: 80px;
+    margin-bottom: $padding;
+
+    .title-image,
+    .thumb {
+       // width: $articlesThumb;
+        //height: $articlesThumb;
+        background: transparent; /// TEMP
+        margin: 0 5px;
+        display: inline-block;
+        height: 80px;
+        img {
+            display: block;
+            //width: 100%;
+            //height: auto;
+            height: 80px;
+            width: auto;
+        }
+    }
+
+    .thumb-list{
+        display: flex;
+        flex-direction: row-reverse;
+        .thumb-square{
+          width: 80px;
+          background-size: 100%;
+          margin: 0 15px 0 0;
+        }
+    }
+
+    .info {
+        padding-left: $articlesThumb + 10px;
+    }
+
+    p.author, h2.title, h3.categories {
+        margin: 0 0 3px;
+        text-transform: uppercase;
+    }
+    p.author {
+        padding-top: 5px;
+        font: $aAuthorHeader;
+        a {
+            &, &:visited {
+                color: $aAuthorText;
+            }
+            &:hover, &:active, &:focus {
+                color: $aAuthorHover;
+            }
+        }
+    }
+    h2.title {
+        font: $pTitleHeader;
+        a {
+            &, &:visited {
+                color: $aTitleText;
+            }
+            &:hover, &:active, &:focus {
+                color: $aTitleHover;
+                text-decoration: underline;
+            }
+        }
+    }
+    h3.categories {
+        font: $aCornerHeader;
+        color: $aCornerText;
+        span:after {
+            content: ", ";
+        }
+        span:last-child:after {
+            content: "";
+        }
+    }
+
+}

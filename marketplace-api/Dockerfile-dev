@@ -1,0 +1,9 @@
+FROM node
+WORKDIR /code
+COPY package.json package.json
+RUN npm i
+COPY . .
+RUN npm run build
+ENV PORT 8080
+EXPOSE 8080
+CMD npm run start:dev

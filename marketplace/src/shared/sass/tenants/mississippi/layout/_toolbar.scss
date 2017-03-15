@@ -1,0 +1,246 @@
+
+/// Header toolbar
+.mp-toolbar {
+
+    background: $hToolbarBg;
+    text-align: right;
+    font: $hToolbarFont;
+
+    .links:first-of-type{
+        float: none;
+    }
+
+    .links, .isv {
+        @include naked();
+        display: inline-block;
+        vertical-align: middle;
+        list-style: none;
+        a {
+            &, &:visited {
+                color: $hToolbarLink;
+            }
+            &:hover, &:active, &:focus {
+                color: $hToolbarHover;
+            }
+
+        }
+        li {
+            display: inline-block;
+            padding: 10px 0;
+
+        }
+    }
+
+    .links {
+        li {
+            margin: 0 10px;
+            position: relative;
+            &.active {
+                border-bottom: 5px $hToolbarHover solid;
+                padding-bottom: 7px;
+                a {
+                    color: $hToolbarHover;
+                }
+            }
+            &.dropdown{
+                li {
+                    a {
+                        color: $hToolbarHover;
+                    }
+                }
+            }
+        }
+        a {
+            .text {
+                display: none;
+            }
+            .icono {
+                font-size: $hToolbarIcon;
+            }
+        }
+        .badge {
+          &.top-badge {
+            top: 6px;
+            right: -8px;
+          }
+        }
+    }
+
+    .isv {
+        margin-left: 15px;
+        text-transform: uppercase;
+        @media (max-width: 767px) {
+            display: block;
+            clear: both;
+        }
+        &:before {
+            content: "";
+            display: block;
+            margin-right: 25px;
+            margin-top: 15px;
+            width: 2px;
+            height: 15px;
+            background: $hToolbarSep;
+            float: left;
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
+
+        a .text{
+        	display:inline-block;
+        }
+    }
+
+    .header-panel {
+        background: $burgerBg;
+        padding: $burgerPadding;
+        border-bottom: $burgerBorder;
+        text-align: center;
+    }
+
+    .account {
+        form {
+            max-width: 410px;
+            margin: 0 auto;
+            input {
+                display: inline-block;
+                width: 200px;
+                font-size: 12px;
+                height: 30px;
+                &:first-child {
+                    margin-right: 5px;
+                }
+            }
+            .lost {
+                text-align: right;
+                a {
+                    font-size: 10px;
+                    &, &:visited {
+                        color: $burgerLink;
+                    }
+                    &:hover, &:active, &:focus {
+                        color: $burgerHover;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            button {
+                margin-top: -20px;
+            }
+        }
+        .social {
+            margin-bottom: 50px;
+            .btn {
+                width: 200px;
+                text-align: left;
+                font-size: 12px!important;
+                line-height: 46px;
+                color: white;
+                padding: 0;
+                margin: 0;
+                &:first-child {
+                    margin-right: 5px;
+                }
+                .icono {
+                    width: 32px;
+                    height: 44px;
+                    margin-right: 12px;
+                    display: block;
+                    float: left;
+                    font-size: 24px;
+                    line-height: 42px;
+                    text-align: center;
+                    //margin: -10px 10px -10px 0;
+                    border-right: 1px $white solid;
+                }
+            }
+            .btn-facebook {
+                background: #00549e;
+            }
+            .btn-linkedin {
+                background: #0096c1;
+            }
+        }
+        .btn-create {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            margin-top: -10px;
+            background: $burgerBtnBg;
+            color: $burgerBtnText;
+        }
+/*
+        a:not(.btn) {
+            &, &:visited {
+                color: $burgerText;
+            }
+            &:hover, &:active, &:focus {
+                text-decoration: none;
+                color: $burgerHover;
+            }
+        }
+*/
+        .cta {
+            margin-top: 15px;
+        }
+    }
+
+    .burger {
+        .col-sm-4 {
+            min-height: $burgerHeight;
+            border-left: $burgerLine;
+            padding-bottom: 15px;
+            &:first-child {
+                border-left: none;
+            }
+        }
+        h4 {
+            margin-top: 0;
+            & + h4 {
+                margin-top: 30px;
+            }
+        }
+        .domains {
+            @include naked();
+            list-style: none;
+            font: $burgerDomains;
+            text-transform: uppercase;
+        }
+    }
+
+}
+
+
+
+/// Header toolbar
+.mp-toolbar {
+
+    position: relative;
+    z-index: 90;
+
+    .links {
+        @media (max-width: 767px) {
+            margin-top: -20px;
+        }
+    }
+
+}
+
+
+
+
+.front{
+    .mp-toolbar{
+        .top-badge{
+            top: 5px;
+            right: 6px;
+            padding: 2px 4px;
+
+        }
+        .glyphicon-ok{
+            font-size: 8px!important;
+            top: 0px!important;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "queue": {
+    "url": "http://localhost:2725",
+    "auth": "keyboard-cat",
+    "type": "email"
+  },
+  "mails": {
+    "no-reply@mobility-for-work.com" : {
+      "host": "mailer.mobility-for-work.com",
+      "auth": {
+        "user": "no-reply@mobility-for-work.com",
+        "pass": "Mobility4Work"
+      },
+      "logger": true,
+      "debug": true,
+      "connectionTimeout": 3000
+    },
+    "john@intuiteev.io" : {
+      "host": "mailer.intuiteev.io",
+      "auth": {
+        "user": "john@intuiteev.io",
+        "pass": "johnintuiteev"
+      },
+      "logger": true,
+      "debug": true,
+      "connectionTimeout": 3000
+    }
+  },
+  "retry": 3
+}

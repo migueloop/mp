@@ -1,0 +1,44 @@
+.mp-home {
+
+    .mp-carousel {
+        position: relative;
+        z-index: 80;
+        &:after {
+            content: "";
+            position: absolute;
+            z-index: 10;
+            top: -$headerOffset;
+            left: 0;
+            width: 100%;
+            height: $hSliderHeight + $headerOffset;
+            background: transparent url($hSliderMask) no-repeat bottom;
+            background-size: cover;
+            pointer-events: none;
+        }
+        .carousel-inner .container {
+            z-index: 12;
+            .text {
+                margin-top: -$headerOffset;
+            }
+        }
+        .carousel-control {
+            z-index: 20;
+        }
+        .carousel-indicators {
+            bottom: 80px;
+            text-align: left;
+            @media (max-width: 991px) {
+                text-align: center;
+                width: 60%;
+                margin-left: -30%;
+            }
+            @media (min-width: 992px) {
+                margin-left: -470px;
+            }
+            @media (min-width: 1200px) {
+                margin-left: -570px;
+            }
+        }
+    }
+
+}

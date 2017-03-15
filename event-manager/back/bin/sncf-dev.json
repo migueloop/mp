@@ -1,0 +1,462 @@
+{
+  "label": "sncf",
+  "definitions": {
+    "pogenURL": "http://develop-po-mobility.intuiteev.io/api/purchaseOrders",
+    "GDPURL": "https://api-gdp.digitaldimension.services",
+    "gdp": {
+      "userId": "f12d6f0e-ae4d-41f4-8d1f-202636c57f4b"
+    }
+  },
+  "timelines": [
+    {
+      "label": "device",
+      "name": "DEVICE",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDPURL}/api/associations",
+                "method": "post",
+                "data": {
+                  "employeeId": "STOCK TERMINAUX REBUTÉS",
+                  "userId": "@{gdp.userId}",
+                  "orderPackageId": "@{assignmentId}",
+                  "line": {},
+                  "device": {},
+                  "email": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "issued",
+          "name": "Commande émise",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "delivered",
+          "name": "Commande livrée",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDPURL}/api/devices",
+                "method": "patch",
+                "data": {
+                  "device": {
+                    "status": 0
+                  },
+                  "userId": "@{gdp.userId}",
+                  "orderPackageId": "@{assignmentId}"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "update-1",
+          "name": "Parc à jour",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{actionUrl}",
+                "method": "post",
+                "data": {
+                  "orderId": "@{orderId}",
+                  "step": "consolidation done"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "consolidation",
+          "name": "Regroupement d’information",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "step",
+              "steps": [
+                {
+                  "type": "internal",
+                  "conditions": {
+                    "action": "line.delivered"
+                  }
+                },
+                {
+                  "type": "internal",
+                  "conditions": {
+                    "action": "email.completed"
+                  }
+                },
+                {
+                  "type": "internal",
+                  "conditions": {
+                    "action": "emm.completed"
+                  }
+                }
+              ]
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "integration",
+          "name": "Intégration",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "update",
+          "name": "Parc à jour",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "complete",
+          "name": "Utilisateur doté",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "line",
+      "name": "LINE",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required",
+                  "product": "required",
+                  "siret": "required"
+                },
+                "global": {
+                  "employee": "required",
+                  "user": "required"
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{pogenURL}",
+                "method": "post",
+                "data": {
+                  "RequestId": "@{orderId}",
+                  "ConfigurationProfile": "Demo-MP-1",
+                  "OutputFileFormat": "Excel",
+                  "ResponseType": "url",
+                  "VariablesArray": {
+                    "Nom - Prenom": "@{user.name} @{user.lastname}",
+                    "Telephone": "@{user.phone}",
+                    "Email": "@{user.email}",
+                    "Num Compte de Facturation": "@{siret}",
+                    "Num Commande SNCF": "@{orderId}",
+                    "Nom du Receptionnaire": "@{user.name} @{user.lastname}",
+                    "Num du Receptionnaire": "@{user.phone}",
+                    "Receptionnaire nom": "@{employee.lastname}",
+                    "Receptionnaire prenom": "@{employee.name}",
+                    "Receptionnaire code cp": "",
+                    "Receptionnaire triple découpe": "@{product.name}",
+                    "Receptionnaire numero à porter": "",
+                    "Receptionnaire date de portabilité": "",
+                    "Receptionnaire num sim": "",
+                    "Receptionnaire profil": ""
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "label": "issued",
+          "name": "Commande émise",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "delivered",
+          "name": "SIM livrée",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "api",
+              "parameters": {
+                "url": "@{GDPURL}/api/lines",
+                "method": "patch",
+                "data": {
+                  "line": {
+                    "status": 0
+                  },
+                  "userId": "@{gdp.userId}",
+                  "orderPackageId": "@{assignmentId}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "email",
+      "name": "EMAIL",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "issued",
+          "name": "Informations transmises",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "completed",
+          "name": "Travaux réalisés",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "label": "emm",
+      "name": "EMM",
+      "active": 0,
+      "definitions": {},
+      "steps": [
+        {
+          "label": "initial",
+          "name": "Dotation initiée",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "initial",
+              "conditions": {
+                "local": {
+                  "orderId": "required"
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "issued",
+          "name": "Informations transmises",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        },
+        {
+          "label": "completed",
+          "name": "Travaux réalisés",
+          "doneAt": null,
+          "triggers": [
+            {
+              "type": "api",
+              "conditions": {
+                "body": {
+                  "orderId": {
+                    "comparationType": "equal",
+                    "value": "@{orderId}"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": []
+        }
+      ]
+    }
+  ]
+}

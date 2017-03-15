@@ -1,0 +1,205 @@
+@font-face {
+    @include webfont('icono', normal, normal,
+             '../fonts/icono/icono', 'icomoon')
+}
+
+.icono {
+    font-family: 'icono' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icono-device:before,
+.icono-material:before {
+    content: "\e90d";
+}
+.icono-mobility:before,
+.icono-mobile:before {
+    content: "\e914";
+}
+.icono-article:before {
+    content: "\e902";
+}
+.icono-cloud:before,
+.icono-saas:before {
+    content: "\e909";
+}
+.icono-service:before,
+.icono-services:before {
+    content: "\e94d";
+}
+.icono-interview:before {
+    content: "\e94e";
+}
+.icono-whitebook:before {
+    content: "\e94f";
+}
+.icono-corner-back:before {
+    content: "\e950";
+}
+.icono-corner-front:before {
+    content: "\e951";
+}
+.icono-android:before {
+    content: "\e900";
+}
+.icono-apple:before {
+    content: "\e901";
+}
+.icono-basket:before {
+    content: "\e903";
+}
+.icono-bullet:before {
+    content: "\e904";
+}
+.icono-bundle:before {
+    content: "\e905";
+}
+.icono-burger:before {
+    content: "\e906";
+}
+.icono-community:before {
+    content: "\e907";
+}
+.icono-compare:before {
+    content: "\e908";
+}
+.icono-favorite:before {
+    content: "\e90a";
+}
+.icono-heart:before {
+    content: "\e90b";
+}
+.icono-home:before {
+    content: "\e90c";
+}
+.icono-like:before {
+    content: "\e90e";
+}
+.icono-mail:before {
+    content: "\e90f";
+}
+.icono-marker:before {
+    content: "\e910";
+}
+.icono-menu:before {
+    content: "\e911";
+}
+.icono-pdf:before {
+    content: "\e912";
+}
+.icono-play:before {
+    content: "\e913";
+}
+.icono-user:before {
+    content: "\e916";
+}
+.icono-microsoft:before,
+.icono-windows:before {
+    content: "\e917";
+}
+.icono-grid:before {
+    content: "\e918";
+}
+.icono-menu-alt:before {
+    content: "\e919";
+}
+.icono-redo:before {
+    content: "\e91a";
+}
+.icono-undo:before {
+    content: "\e91b";
+}
+.icono-image:before {
+    content: "\e91c";
+}
+.icono-star:before {
+    content: "\e91d";
+}
+.icono-upload:before {
+    content: "\e91e";
+}
+.icono-arrow-move:before {
+    content: "\e91f";
+}
+.icono-pie:before {
+    content: "\e920";
+}
+.icono-eye:before {
+    content: "\e921";
+}
+.icono-cog:before {
+    content: "\e922";
+}
+.icono-info:before {
+    content: "\e923";
+}
+.icono-wrench:before {
+    content: "\e924";
+}
+.icono-twitter:before {
+    content: "\e925";
+}
+.icono-facebook:before {
+    content: "\e926";
+}
+.icono-vimeo:before {
+    content: "\e927";
+}
+.icono-tumbler:before {
+    content: "\e928";
+}
+.icono-skype:before {
+    content: "\e929";
+}
+.icono-pinterest:before {
+    content: "\e92a";
+}
+.icono-linkedin:before {
+    content: "\e92b";
+}
+.icono-last-fm:before {
+    content: "\e92c";
+}
+.icono-github:before {
+    content: "\e92d";
+}
+.icono-flickr:before {
+    content: "\e92e";
+}
+.icono-arrow-up:before {
+    content: "\e92f";
+}
+.icono-arrow-right:before {
+    content: "\e930";
+}
+.icono-arrow-left:before {
+    content: "\e931";
+}
+.icono-arrow-down:before {
+    content: "\e932";
+}
+
+
+.glyphicon.spinning {
+  -webkit-animation: glyphicon-spin-r 2s infinite linear;
+  animation: glyphicon-spin-r 2s infinite linear;
+}
+
+@-webkit-keyframes glyphicon-spin-r {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

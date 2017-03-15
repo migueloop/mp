@@ -1,0 +1,73 @@
+.mp-corner {
+
+    min-height: 800px;
+    background: transparent no-repeat top;
+    background-size: 100% auto;
+
+    .about {
+        padding: 30px 0;
+        min-height: 320px;
+        .titlebox {
+            height: 170px;
+        }
+        h2.title {
+            font: $cAboutFont;
+            text-align: left;
+            position: relative;
+            margin: 0;
+            top: 50%;
+            @include transform(translateY(-50%));
+        }
+        .cover {
+            height: 200px;
+            position: relative;
+            float: right;
+            width: 200px;
+        }
+        @media (max-width: 1199px) {
+            .titlebox {
+                height: auto;
+            }
+            h2.title {
+                text-align: center;
+            }
+            .cover {
+                float: none;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .featured {
+        padding-top: 30px;
+    }
+
+    &.thematic-education, /// TEMP
+    &.thematic-ressources-humaines, /// TEMP
+    &.thematic-rh, /// TEMP
+    &.thematic-custom1 {
+        background-image: url(../images/thematic-ressources-humaines.png);
+    }
+
+    &.thematic-industrie, /// TEMP
+    &.thematic-mobilite, /// TEMP
+    &.thematic-custom2 {
+        background-image: url(../images/thematic-mobilite.png);
+    }
+
+    &.thematic-sante, /// TEMP
+    &.thematic-transverse, /// TEMP
+    &.thematic-custom3 {
+        background-image: url(../images/thematic-transverse.png);
+    }
+
+    &.thematic-retail, /// TEMP
+    &.thematic-catalogue, /// TEMP
+    &.thematic-custom4 {
+        background-image: url(../images/thematic-catalogue.png);
+    }
+    &.catalogue {
+        background-image: url(../images/thematic-global.png);
+    }
+
+}

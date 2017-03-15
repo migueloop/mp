@@ -1,0 +1,21 @@
+.mp-header-title {
+    .brand {
+        position: absolute;
+        z-index: 100;
+        @include naked();
+        a {
+            display: block;
+            text-indent: -9999px;
+            outline: none;
+            width: $hBrandWidth;
+            height: $hBrandHeight;
+            background: transparent url($hBrandImage) no-repeat center;
+            background-size: cover;
+        }
+    }
+
+    .cobrand {
+        display: none;
+    }
+
+}

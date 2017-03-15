@@ -1,0 +1,7 @@
+{
+	"sso":{
+		"client_id":"sncf"
+	},
+	"tenantId": 1,
+	"private": true
+}

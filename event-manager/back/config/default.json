@@ -1,0 +1,12 @@
+{
+  "db": {
+    "url": "localhost",
+    "port": "27018"
+  },
+  "definitions": {
+    "PO_URL": "http://develop-po-mobility.intuiteev.io/api/purchaseOrders",
+    "QUEUE_URL": "http://queue-api:3000",
+    "GDP_URL": "https://api-gdp.digitaldimension.services/api",
+    "TL_SYSTEM": "http://develop.api.intuiteev.io:3030"
+  }
+}

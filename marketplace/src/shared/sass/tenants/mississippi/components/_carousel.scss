@@ -1,0 +1,44 @@
+.image-gallery, /// TEMP
+.mp-carousel {
+
+    .carousel-control {
+        &.left, &.right {
+            background: transparent;
+        }
+    }
+
+    .carousel-inner > .item {
+        .title {
+            margin-bottom: 15px;
+            & > h2 {
+            }
+            & > .author {
+                font: $sAuthorFont;
+                color: $sAuthorText;
+                text-transform: uppercase;
+            }
+        }
+        .btn {
+        }
+    }
+
+    .image-gallery-bullets-container, /// TEMP
+    .carousel-indicators {
+        /*width: auto;*/
+        li {
+            border-radius: 0;
+            @include transform(rotate(45deg));
+            &, &.active {
+                line-height: 8px;
+                width: 8px;
+                height: 8px;
+                margin: 5px 2px;
+            }
+            &:before,
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+}

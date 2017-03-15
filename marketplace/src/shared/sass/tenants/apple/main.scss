@@ -1,0 +1,12 @@
+// MIXINS
+@import '../../base/mixins.scss';
+
+/// VARS
+@import '../../base/vars.base.scss';
+@import 'vars.tenant.scss';
+
+// MAIN BASE
+@import '../../base/main.base.scss';
+
+// TENANT-SPECIFIC
+@import './layout/header.scss';

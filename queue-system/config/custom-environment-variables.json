@@ -1,0 +1,6 @@
+{
+    "redis": {
+      "port": "REDIS_PORT",
+      "host": "REDIS_HOST"
+    }
+}

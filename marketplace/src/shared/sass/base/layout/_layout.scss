@@ -1,0 +1,93 @@
+/// Basics
+body {
+    background: $layoutBg;
+    font-size: $layoutFontSize;
+    color: $layoutText;
+}
+
+
+/// Font
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $layoutFont;
+  color: $color-greyDark;
+}
+
+h2 {
+    font: $layoutH2;
+}
+
+
+/// Links
+a {
+    &, a:visited {
+        color: $layoutLink;
+    }
+    &:hover, &:active, &:focus {
+        color: $layoutHover;
+        text-decoration: none;
+    }
+}
+
+.padding-top{padding-top:$padding;}
+.padding-bottom{padding-bottom:$padding;}
+
+.row.padding-v-cols > div{
+    @media (max-width: 767px) {
+       padding: ($padding / 2);
+    }
+}
+
+.mp-main {
+  padding-top: 20px;
+    & > .container {
+        padding: 0px;
+    }
+}
+
+.front .mp-main{padding-top: 0px;}
+
+.page-header{
+  // margin: 40px 0 20px;
+  margin: 0px;
+  border-bottom: 0px;
+}
+
+label.permission-label {
+  display: block;
+  font-weight: NORMAL;
+  margin-bottom: 0;
+}
+
+// FLEXBOX EQ-HEIGHT COLS
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+
+.col-vcenter {
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+}
+
+.col-hcenter {
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+}
+
+.row-no-hmargin{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.no-padding-left{
+  padding-left: 0px!important;
+}
+
+.no-padding-right{
+  padding-right: 0px!important;
+}

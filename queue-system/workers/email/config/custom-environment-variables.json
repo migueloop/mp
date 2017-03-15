@@ -1,0 +1,6 @@
+{
+  "queue": {
+    "url": "QUEUE_URL",
+    "auth": "AUTHENTICATION_TOKEN"
+  }
+}

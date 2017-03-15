@@ -1,0 +1,131 @@
+.mp-sidebar {
+
+    background: $sidebarBg;
+    color: $sidebarText;
+    padding: $padding;
+    min-height: 350px;
+    position: relative;
+
+    .type, .feedback, .actions {
+        border-bottom: 1px $sidebarLine solid;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .type {
+        height: 1.25 * $sTypeIcon;
+        .icono {
+            float: left;
+            font-size: $sTypeIcon;
+            margin-right: 10px;
+        }
+        .category {
+            margin: 0;
+            font: $sTypeFont;
+            text-transform: uppercase;
+            position: relative;
+            top: 50%;
+            @include transform(translateY(-50%));
+        }
+    }
+
+    .like {
+        .icono {
+            float: right;
+            font-size: $sLikeIcon;
+            &, &:visited {
+                color: $sidebarText;
+            }
+            &:hover, &:active, &:focus {
+                color: $sLikeHover;
+            }
+        }
+        &.active a {
+            &, &:visited, &:hover, &:active, &:focus {
+                color: $sLikeActive;
+            }
+        }
+        .text {
+            display: none;
+        }
+    }
+
+    .review {
+        margin: 0;
+        .rating {
+            font: $sRatingFont;
+            color: $sRatingText;
+        }
+        .comments {
+            font: $sCommentsFont;
+            color: $sCommentsText;
+        }
+    }
+
+    .buy {
+        background: $sBuyBg;
+        color: $sBuyText;
+        padding: 15px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .os {
+        @include naked();
+        li {
+            display: inline-block;
+            margin: 0 5px;
+        }
+        a {
+            &, &:visited {
+                color: $sBuyText;
+            }
+            &:hover, &:active, &:focus {
+                color: $sBuyHover;
+            }
+        }
+        .icono {
+            font-size: $sBuyIcon;
+            vertical-align: middle;
+        }
+        .text {
+            display: none;
+        }
+    }
+
+    .contact, .subscribe {
+        width: 100%;
+        margin: 0;
+    }
+
+    .tools {
+        @include naked();
+        list-style: none;
+        //margin: 0 -15px;
+        position: absolute;
+        bottom: 0;
+        left: 0px;
+        right: 0px;
+        a, .a {
+            display: block;
+            padding: 5px 15px;
+            font: $sToolsFont;
+        }
+        .icono {
+            font-size: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .community {
+            &, &:visited, &:hover, &:active, &:focus {
+                background: $sCommBg;
+                color: $sCommText;
+            }
+        }
+    }
+
+    button{
+        margin-bottom: 5px;
+    }
+
+}

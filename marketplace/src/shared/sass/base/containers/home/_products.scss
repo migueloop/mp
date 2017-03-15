@@ -1,0 +1,23 @@
+/// Products list (home)
+.mp-home {
+    .mp-products {
+
+        margin-top: $padding;
+
+        .product {
+            min-height: $productsThumb;
+            margin-bottom: 13px;
+            .thumb {
+                float: left;
+            }
+            .info {
+                padding-left: $productsThumb + 10px;
+            }
+            .desc {
+                display: none;
+            }
+        }
+
+    }
+}
+
